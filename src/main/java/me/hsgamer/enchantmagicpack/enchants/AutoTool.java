@@ -7,7 +7,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
-import org.bukkit.event.player.PlayerInteractEntityEvent;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -19,6 +19,7 @@ public class AutoTool extends CustomEnchantment {
         setWeight(1.25);
 
         addNaturalItems(ItemSet.TOOLS.getItems());
+        addNaturalItems(ItemSet.SWORDS.getItems());
     }
 
     public void applyInteractBlock(Player user, int level, PlayerInteractEvent event) {
@@ -50,24 +51,22 @@ public class AutoTool extends CustomEnchantment {
         }
     }
 
-    @Override
-    public void applyInteractEntity(Player user, int level, PlayerInteractEntityEvent event) {
-        if (event.getRightClicked() instanceof LivingEntity) {
-            ItemStack item = event.getPlayer().getInventory().getItem(event.getHand());
-            String itemtype = item.getType().toString();
-            String value;
-            if (itemtype.startsWith("DIAMOND_")) {
-                value = "DIAMOND_";
-            } else if (itemtype.startsWith("GOLD_")) {
-                value = "GOLD_";
-            } else if (itemtype.startsWith("IRON_")) {
-                value = "IRON_";
-            } else if (itemtype.startsWith("STONE_")) {
-                value = "STONE_";
-            } else if (itemtype.startsWith("WOOD_")) {
-                value = "WOOD_";
-            } else return;
-            item.setType(Material.valueOf(value + "SWORD"));
-        }
+    public void applyOnHit(LivingEntity user, LivingEntity target, int level, EntityDamageByEntityEvent event) {
+        if (!(user instanceof Player)) return;
+        ItemStack item = ((Player) user).getInventory().getItemInMainHand();
+        String itemtype = item.getType().toString();
+        String value;
+        if (itemtype.startsWith("DIAMOND_")) {
+            value = "DIAMOND_";
+        } else if (itemtype.startsWith("GOLD_")) {
+            value = "GOLD_";
+        } else if (itemtype.startsWith("IRON_")) {
+            value = "IRON_";
+        } else if (itemtype.startsWith("STONE_")) {
+            value = "STONE_";
+        } else if (itemtype.startsWith("WOOD_")) {
+            value = "WOOD_";
+        } else return;
+        item.setType(Material.valueOf(value + "SWORD"));
     }
 }
