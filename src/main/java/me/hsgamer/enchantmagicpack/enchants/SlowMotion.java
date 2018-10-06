@@ -69,7 +69,7 @@ public class SlowMotion extends CustomEnchantment {
                             Vector vec = entity.getVelocity().multiply(entity.getVelocity().length());
                             vector.put(entity, vec);
                             entity.setGravity(false);
-                            entity.setVelocity(vec.subtract(vec.multiply(percent)));
+                            entity.setVelocity(new Vector(vec.getX() * percent, vec.getY() * percent, vec.getZ() * percent));
                         }
                     }
                 }
