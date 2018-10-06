@@ -4,9 +4,12 @@ import com.sucy.enchant.api.CustomEnchantment;
 import com.sucy.enchant.api.ItemSet;
 import me.hsgamer.enchantmagicpack.utils.ToolsUtils;
 import org.bukkit.Material;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
 
 public class AutoTool extends CustomEnchantment {
     public AutoTool() {
@@ -19,7 +22,7 @@ public class AutoTool extends CustomEnchantment {
     }
 
     public void applyInteractBlock(Player user, int level, PlayerInteractEvent event) {
-        if (event.getAction() == Action.LEFT_CLICK_BLOCK) {
+        if (event.getAction() == Action.LEFT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
             Material blocktype = event.getClickedBlock().getType();
             String itemtype = event.getMaterial().toString();
             String value;
@@ -44,6 +47,27 @@ public class AutoTool extends CustomEnchantment {
             } else if (ToolsUtils.SWORDS_BLOCKS.contains(blocktype)) {
                 event.getItem().setType(Material.valueOf(value + "SWORD"));
             }
+        }
+    }
+
+    @Override
+    public void applyInteractEntity(Player user, int level, PlayerInteractEntityEvent event) {
+        if (event.getRightClicked() instanceof LivingEntity) {
+            ItemStack item = event.getPlayer().getInventory().getItem(event.getHand());
+            String itemtype = item.getType().toString();
+            String value;
+            if (itemtype.startsWith("DIAMOND_")) {
+                value = "DIAMOND_";
+            } else if (itemtype.startsWith("GOLD_")) {
+                value = "GOLD_";
+            } else if (itemtype.startsWith("IRON_")) {
+                value = "IRON_";
+            } else if (itemtype.startsWith("STONE_")) {
+                value = "STONE_";
+            } else if (itemtype.startsWith("WOOD_")) {
+                value = "WOOD_";
+            } else return;
+            item.setType(Material.valueOf(value + "SWORD"));
         }
     }
 }
