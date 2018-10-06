@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="EnchantmentAPI">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Bản tải về/EnchantmentAPI.jar!/" />
+      <root url="jar://$USER_HOME$/Bản tải về/MCCore.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
