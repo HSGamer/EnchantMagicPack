@@ -3,7 +3,7 @@ package me.hsgamer.enchantmagicpack;
 import com.sucy.enchant.api.EnchantPlugin;
 import com.sucy.enchant.api.EnchantmentRegistry;
 import me.hsgamer.enchantmagicpack.enchants.AutoTool;
-import me.hsgamer.enchantmagicpack.enchants.SlowMotion;
+import me.hsgamer.enchantmagicpack.enchants.SpreadLaser;
 import me.hsgamer.enchantmagicpack.enchants.TimeFreezing;
 import me.hsgamer.enchantmagicpack.utils.EffectLibUtils;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -31,8 +31,8 @@ public final class EnchantMagicPack extends JavaPlugin implements EnchantPlugin 
     public void registerEnchantments(EnchantmentRegistry enchantmentRegistry) {
         enchantmentRegistry.register(
                 new TimeFreezing(),
-                new SlowMotion(),
-                new AutoTool()
+                new AutoTool(),
+                new SpreadLaser()
         );
     }
 }
