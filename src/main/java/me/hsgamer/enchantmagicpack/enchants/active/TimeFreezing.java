@@ -1,4 +1,4 @@
-package me.hsgamer.enchantmagicpack.enchants;
+package me.hsgamer.enchantmagicpack.enchants.active;
 
 import com.sucy.enchant.api.Cooldowns;
 import com.sucy.enchant.api.CustomEnchantment;

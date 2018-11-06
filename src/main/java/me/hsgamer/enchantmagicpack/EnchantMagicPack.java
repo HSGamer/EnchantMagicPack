@@ -2,10 +2,18 @@ package me.hsgamer.enchantmagicpack;
 
 import com.sucy.enchant.api.EnchantPlugin;
 import com.sucy.enchant.api.EnchantmentRegistry;
-import me.hsgamer.enchantmagicpack.enchants.AutoTool;
-import me.hsgamer.enchantmagicpack.enchants.Pyro;
-import me.hsgamer.enchantmagicpack.enchants.TimeFreezing;
+import me.hsgamer.enchantmagicpack.enchants.active.*;
+import me.hsgamer.enchantmagicpack.enchants.passive.AutoTool;
+import me.hsgamer.enchantmagicpack.enchants.passive.Dodge;
+import me.hsgamer.enchantmagicpack.enchants.passive.HitBehind;
+import me.hsgamer.enchantmagicpack.enchants.passive.StunHit;
+import me.hsgamer.enchantmagicpack.enchants.potion.passive.Shining;
+import me.hsgamer.enchantmagicpack.enchants.projectile.hit.ExplosiveArrow;
+import me.hsgamer.enchantmagicpack.enchants.projectile.hit.FrozenArrow;
+import me.hsgamer.enchantmagicpack.enchants.projectile.hit.SpikeArrow;
+import me.hsgamer.enchantmagicpack.enchants.projectile.shoot.Volley;
 import me.hsgamer.enchantmagicpack.utils.EffectLibUtils;
+import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class EnchantMagicPack extends JavaPlugin implements EnchantPlugin {
@@ -19,12 +27,14 @@ public final class EnchantMagicPack extends JavaPlugin implements EnchantPlugin 
     public void onEnable() {
         instace = this;
         EffectLibUtils.inputEffectLib(instace);
+        new Listeners(this);
     }
 
     @Override
     public void onDisable() {
         instace = null;
         EffectLibUtils.clear();
+        HandlerList.unregisterAll(this);
     }
 
     @Override
@@ -32,7 +42,18 @@ public final class EnchantMagicPack extends JavaPlugin implements EnchantPlugin 
         enchantmentRegistry.register(
                 new TimeFreezing(),
                 new AutoTool(),
-                new Pyro()
+                new Pyro(),
+                new HellRound(),
+                new Laser(),
+                new StrikeDown(),
+                new Dodge(),
+                new HitBehind(),
+                new StunHit(),
+                new Shining(),
+                new ExplosiveArrow(),
+                new FrozenArrow(),
+                new SpikeArrow(),
+                new Volley()
         );
     }
 }

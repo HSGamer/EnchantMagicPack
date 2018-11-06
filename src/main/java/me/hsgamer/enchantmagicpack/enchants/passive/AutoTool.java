@@ -1,4 +1,4 @@
-package me.hsgamer.enchantmagicpack.enchants;
+package me.hsgamer.enchantmagicpack.enchants.passive;
 
 import com.sucy.enchant.api.CustomEnchantment;
 import com.sucy.enchant.api.ItemSet;
