@@ -13,6 +13,8 @@ import org.bukkit.event.entity.ProjectileHitEvent;
 public class ExplosiveArrow extends ProjectileHit {
 
     private static final String DAMAGE = "damage";
+    private static final String BLOCK_FIRE = "block-fire";
+    private static final String BLOCK_BREAK = "block-break";
 
     public ExplosiveArrow() {
         super("ExplosiveArrow", "Explode the area when hitting the enemy");
@@ -22,6 +24,8 @@ public class ExplosiveArrow extends ProjectileHit {
 
         Cooldowns.configure(settings, 5, 0);
         settings.set(DAMAGE, 2, 1);
+        settings.set(BLOCK_BREAK, true);
+        settings.set(BLOCK_FIRE, true);
     }
 
     public void applyProjectileHit(LivingEntity user, int level, ProjectileHitEvent event) {
@@ -32,7 +36,7 @@ public class ExplosiveArrow extends ProjectileHit {
         // Get the location of the target
         Location target = event.getHitEntity().getLocation();
         // Create the explosion on the enemy's location
-        event.getHitEntity().getWorld().createExplosion(target.getX(), target.getY(), target.getZ(), settings.getInt(DAMAGE, level), false, false);
+        event.getHitEntity().getLocation().createExplosion(settings.getFloat(DAMAGE, level), settings.getBoolean(BLOCK_FIRE), settings.getBoolean(BLOCK_BREAK));
         // Set the entity nearby on fire
         for (Entity e : target.getWorld().getNearbyEntities(target, settings.getInt(DAMAGE, level), settings.getInt(DAMAGE, level), settings.getInt(DAMAGE, level))) {
             if (e instanceof LivingEntity && !Protection.isAlly(user, (LivingEntity) e)) {
