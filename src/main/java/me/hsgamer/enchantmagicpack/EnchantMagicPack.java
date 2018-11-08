@@ -3,6 +3,7 @@ package me.hsgamer.enchantmagicpack;
 import com.sucy.enchant.api.EnchantPlugin;
 import com.sucy.enchant.api.EnchantmentRegistry;
 import me.hsgamer.enchantmagicpack.enchants.active.*;
+import me.hsgamer.enchantmagicpack.enchants.death.SelfExplode;
 import me.hsgamer.enchantmagicpack.enchants.passive.AutoTool;
 import me.hsgamer.enchantmagicpack.enchants.passive.Dodge;
 import me.hsgamer.enchantmagicpack.enchants.passive.HitBehind;
@@ -53,7 +54,8 @@ public final class EnchantMagicPack extends JavaPlugin implements EnchantPlugin 
                 new ExplosiveArrow(),
                 new FrozenArrow(),
                 new SpikeArrow(),
-                new Volley()
+                new Volley(),
+                new SelfExplode()
         );
     }
 }
