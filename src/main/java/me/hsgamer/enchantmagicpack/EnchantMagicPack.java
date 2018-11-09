@@ -12,6 +12,7 @@ import me.hsgamer.enchantmagicpack.enchants.potion.passive.Shining;
 import me.hsgamer.enchantmagicpack.enchants.projectile.hit.ExplosiveArrow;
 import me.hsgamer.enchantmagicpack.enchants.projectile.hit.FrozenArrow;
 import me.hsgamer.enchantmagicpack.enchants.projectile.hit.SpikeArrow;
+import me.hsgamer.enchantmagicpack.enchants.projectile.shoot.GravityArrow;
 import me.hsgamer.enchantmagicpack.enchants.projectile.shoot.Volley;
 import me.hsgamer.enchantmagicpack.utils.EffectLibUtils;
 import org.bukkit.event.HandlerList;
@@ -55,7 +56,8 @@ public final class EnchantMagicPack extends JavaPlugin implements EnchantPlugin 
                 new FrozenArrow(),
                 new SpikeArrow(),
                 new Volley(),
-                new SelfExplode()
+                new SelfExplode(),
+                new GravityArrow()
         );
     }
 }
