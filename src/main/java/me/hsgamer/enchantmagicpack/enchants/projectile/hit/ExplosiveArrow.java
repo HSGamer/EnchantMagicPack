@@ -36,7 +36,7 @@ public class ExplosiveArrow extends ProjectileHit {
         // Get the location of the target
         Location target = event.getHitEntity().getLocation();
         // Create the explosion on the enemy's location
-        event.getHitEntity().getLocation().createExplosion(settings.getFloat(DAMAGE, level), settings.getBoolean(BLOCK_FIRE), settings.getBoolean(BLOCK_BREAK));
+        event.getHitEntity().getWorld().createExplosion(target.getX(), target.getY(), target.getZ(), settings.getFloat(DAMAGE, level), settings.getBoolean(BLOCK_FIRE), settings.getBoolean(BLOCK_BREAK));
         // Set the entity nearby on fire
         for (Entity e : target.getWorld().getNearbyEntities(target, settings.getInt(DAMAGE, level), settings.getInt(DAMAGE, level), settings.getInt(DAMAGE, level))) {
             if (e instanceof LivingEntity && !Protection.isAlly(user, (LivingEntity) e)) {
