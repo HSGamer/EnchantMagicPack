@@ -4,3 +4,4 @@ main: me.hsgamer.enchantmagicpack.EnchantMagicPack
 depend: [EnchantmentAPI]
 authors: [HSGamer]
 description: A magic pack for EnchantmentAPI
+api-version: 1.13
