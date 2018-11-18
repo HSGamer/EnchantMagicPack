@@ -14,7 +14,6 @@ import me.hsgamer.enchantmagicpack.enchants.projectile.hit.FrozenArrow;
 import me.hsgamer.enchantmagicpack.enchants.projectile.hit.SpikeArrow;
 import me.hsgamer.enchantmagicpack.enchants.projectile.shoot.GravityArrow;
 import me.hsgamer.enchantmagicpack.enchants.projectile.shoot.Volley;
-import me.hsgamer.enchantmagicpack.utils.EffectLibUtils;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -28,14 +27,12 @@ public final class EnchantMagicPack extends JavaPlugin implements EnchantPlugin 
     @Override
     public void onEnable() {
         instace = this;
-        EffectLibUtils.inputEffectLib(instace);
         new Listeners(this);
     }
 
     @Override
     public void onDisable() {
         instace = null;
-        EffectLibUtils.clear();
         HandlerList.unregisterAll(this);
     }
 

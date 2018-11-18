@@ -1,6 +1,6 @@
 name: EnchantMagicPack
 version: ${project.version}
 main: me.hsgamer.enchantmagicpack.EnchantMagicPack
-depend: [EnchantmentAPI, EffectLib]
+depend: [EnchantmentAPI]
 authors: [HSGamer]
 description: A magic pack for EnchantmentAPI

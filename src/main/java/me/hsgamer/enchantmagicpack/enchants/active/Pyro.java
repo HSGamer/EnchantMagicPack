@@ -3,11 +3,9 @@ package me.hsgamer.enchantmagicpack.enchants.active;
 import com.sucy.enchant.api.Cooldowns;
 import com.sucy.enchant.api.CustomEnchantment;
 import com.sucy.enchant.api.Tasks;
-import de.slikey.effectlib.effect.FlameEffect;
-import de.slikey.effectlib.effect.SmokeEffect;
 import me.hsgamer.enchantmagicpack.EnchantMagicPack;
-import me.hsgamer.enchantmagicpack.utils.EffectLibUtils;
 import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -43,17 +41,11 @@ public class Pyro extends CustomEnchantment {
         if (!(event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_AIR)) return;
         if (Cooldowns.onCooldown(this, user, settings, level)) return;
         Cooldowns.start(this, user);
-        SmokeEffect smoke = new SmokeEffect(EffectLibUtils.getEffectLib());
-        FlameEffect flame = new FlameEffect(EffectLibUtils.getEffectLib());
-        smoke.setEntity(user);
-        flame.setEntity(user);
-        smoke.infinite();
-        flame.infinite();
-        smoke.start();
-        flame.start();
         int fireticks = (int) settings.get(FIRETICKS, level);
         int time = (int) (settings.get(TIME, level) * 20);
         tasks.put(user.getUniqueId(), Tasks.schedule(() -> {
+            user.getWorld().spawnParticle(Particle.FLAME, user.getLocation(), 30, 1, 2, 1, 0.01);
+            user.getWorld().spawnParticle(Particle.SMOKE_NORMAL, user.getLocation(), 10, 1, 2, 1, 0.01);
             for (Entity entity : user.getNearbyEntities(1, 2, 1)) {
                 if (entity instanceof LivingEntity) {
                     entity.setFireTicks(fireticks);
@@ -64,8 +56,6 @@ public class Pyro extends CustomEnchantment {
             @Override
             public void run() {
                 tasks.remove(user.getUniqueId()).cancel();
-                smoke.cancel();
-                flame.cancel();
             }
         }.runTaskLater(EnchantMagicPack.getInstace(), time);
     }
