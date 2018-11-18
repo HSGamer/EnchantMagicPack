@@ -57,7 +57,7 @@ public class TimeFreezing extends CustomEnchantment {
                 @Override
                 public void run() {
                     loc.getWorld().spawnParticle(Particle.CRIT_MAGIC, loc, (int) (length * 150), length, length, length, 0.01);
-                    loc.getWorld().playSound(loc, Sound.BLOCK_NOTE_PLING, 10, 2);
+                    loc.getWorld().playSound(loc, Sound.BLOCK_NOTE_BLOCK_PLING, 10, 2);
                     for (Entity entity : loc.getNearbyEntities(length, length, length)) {
                         if (entity instanceof Projectile
                                 || entity.getType().equals(EntityType.SMALL_FIREBALL) || entity.getType().equals(EntityType.FIREBALL) || entity.getType().equals(EntityType.DRAGON_FIREBALL)) {

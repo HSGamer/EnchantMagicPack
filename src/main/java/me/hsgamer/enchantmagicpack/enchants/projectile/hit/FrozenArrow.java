@@ -32,7 +32,7 @@ public class FrozenArrow extends ProjectileHit {
         // Check if the target is LivingEntity
         if (!(event.getHitEntity() instanceof LivingEntity)) return;
         // Freeze the target
-        ((LivingEntity) event.getHitEntity()).addPotionEffect(new PotionEffect(PotionEffectType.SLOW, settings.getInt(DURATION, level) * 20, 10, true, true, Color.WHITE));
+        ((LivingEntity) event.getHitEntity()).addPotionEffect(new PotionEffect(PotionEffectType.SLOW, settings.getInt(DURATION, level) * 20, 10, true, true, true));
         // Start the Cooldown
         Cooldowns.start(this, user);
     }

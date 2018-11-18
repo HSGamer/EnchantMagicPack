@@ -45,7 +45,7 @@ public class Laser extends CustomEnchantment {
         double space = settings.getDouble(SPACE);
         for (double i = 0.0D; i < range; i += space) {
             Block tempblock = loc.getBlock();
-            if (!(tempblock.isEmpty() || tempblock.getType() == Material.GLASS || tempblock.getType() == Material.STAINED_GLASS || tempblock.getType() == Material.STAINED_GLASS_PANE || tempblock.getType() == Material.THIN_GLASS))
+            if (!(tempblock.isEmpty() || tempblock.getType() == Material.GLASS || tempblock.getType() == Material.LEGACY_STAINED_GLASS || tempblock.getType() == Material.LEGACY_STAINED_GLASS_PANE || tempblock.getType() == Material.LEGACY_THIN_GLASS))
                 break;
             loc = loc.add(dir.multiply(1).normalize());
             loc.getWorld().spawnParticle(Particle.REDSTONE, loc, 5, 0, 0, 0, 0);
