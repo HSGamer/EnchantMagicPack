@@ -28,8 +28,8 @@ public class ToolsUtils {
             Material.ANVIL,
             Material.BREWING_STAND,
             Material.CAULDRON,
-            Material.LEGACY_IRON_FENCE,
-            Material.LEGACY_IRON_DOOR_BLOCK,
+            Material.IRON_BARS,
+            Material.IRON_DOOR,
             Material.IRON_TRAPDOOR,
             Material.HOPPER,
             Material.LEGACY_GOLD_PLATE,
@@ -45,7 +45,7 @@ public class ToolsUtils {
             Material.LIME_SHULKER_BOX,
             Material.MAGENTA_SHULKER_BOX,
             Material.ORANGE_SHULKER_BOX,
-            Material.LEGACY_SILVER_SHULKER_BOX,
+            Material.LIGHT_GRAY_SHULKER_BOX,
             Material.PINK_SHULKER_BOX,
             Material.PURPLE_SHULKER_BOX,
             Material.RED_SHULKER_BOX,
@@ -172,7 +172,7 @@ public class ToolsUtils {
     ));
 
     public static List<Material> SWORDS_BLOCKS = new ArrayList<>(Arrays.asList(
-            Material.LEGACY_WEB
+            Material.COBWEB
     ));
 
 }
