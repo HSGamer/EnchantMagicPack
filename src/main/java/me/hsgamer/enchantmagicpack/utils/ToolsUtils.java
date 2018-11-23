@@ -161,7 +161,7 @@ public class ToolsUtils {
             XMaterial.LEGACY_WOODEN_DOOR,
             XMaterial.LEGACY_LOG,
             XMaterial.LEGACY_LOG_2,
-            XMaterial.LEGACY_WOOD_PLATE,
+            XMaterial.WOOD_PLATE,
             XMaterial.LEGACY_WOOD_STEP,
             XMaterial.LEGACY_WOOD_DOUBLE_STEP,
             XMaterial.LEGACY_BIRCH_WOOD_STAIRS,
