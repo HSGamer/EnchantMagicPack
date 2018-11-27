@@ -114,9 +114,9 @@ public class ToolsUtils {
             XMaterial.COBBLESTONE_SLAB,
             XMaterial.BRICK_SLAB,
             XMaterial.PURPUR_SLAB,
-            XMaterial.LEGACY_DOUBLE_STEP,
-            XMaterial.LEGACY_PURPUR_DOUBLE_SLAB,
-            XMaterial.LEGACY_DOUBLE_STONE_SLAB2,
+            //XMaterial.LEGACY_DOUBLE_STEP,
+            //XMaterial.LEGACY_PURPUR_DOUBLE_SLAB,
+            //XMaterial.LEGACY_DOUBLE_STONE_SLAB2,
             XMaterial.NETHER_BRICK_STAIRS,
             XMaterial.BRICK_STAIRS,
             XMaterial.COBBLESTONE_STAIRS,
@@ -124,14 +124,14 @@ public class ToolsUtils {
             XMaterial.QUARTZ_STAIRS,
             XMaterial.RED_SANDSTONE_STAIRS,
             XMaterial.SANDSTONE_STAIRS,
-            XMaterial.LEGACY_SMOOTH_STAIRS,
+            //XMaterial.LEGACY_SMOOTH_STAIRS,
             XMaterial.STONE,
             XMaterial.BRICK,
             XMaterial.STONE_BUTTON,
             XMaterial.OBSIDIAN,
-            XMaterial.OBSERVER,
-            XMaterial.CLAY_BLOCK,
-            XMaterial.STAINED_CLAY
+            XMaterial.OBSERVER
+            //XMaterial.CLAY_BLOCK,
+            //XMaterial.STAINED_CLAY
     ));
 
     public static List<XMaterial> AXES_BLOCKS = new ArrayList<>(Arrays.asList(
@@ -181,27 +181,27 @@ public class ToolsUtils {
             XMaterial.SIGN,
             XMaterial.WALL_SIGN,
             XMaterial.TRAPPED_CHEST,
-            XMaterial.LEGACY_WOOD,
-            XMaterial.LEGACY_WOOD_BUTTON,
-            XMaterial.LEGACY_WOODEN_DOOR,
-            XMaterial.LEGACY_LOG,
-            XMaterial.LEGACY_LOG_2,
-            XMaterial.WOOD_PLATE,
-            XMaterial.LEGACY_WOOD_STEP,
-            XMaterial.LEGACY_WOOD_DOUBLE_STEP,
-            XMaterial.LEGACY_BIRCH_WOOD_STAIRS,
+            //XMaterial.LEGACY_WOOD,
+            //XMaterial.LEGACY_WOOD_BUTTON,
+            //XMaterial.LEGACY_WOODEN_DOOR,
+            //XMaterial.LEGACY_LOG,
+            //XMaterial.LEGACY_LOG_2,
+            //XMaterial.WOOD_PLATE,
+            //XMaterial.LEGACY_WOOD_STEP,
+            //XMaterial.LEGACY_WOOD_DOUBLE_STEP,
+            //XMaterial.LEGACY_BIRCH_WOOD_STAIRS,
             XMaterial.ACACIA_STAIRS,
-            XMaterial.DARK_OAK_STAIRS,
-            XMaterial.LEGACY_JUNGLE_WOOD_STAIRS,
-            XMaterial.LEGACY_SPRUCE_WOOD_STAIRS,
-            XMaterial.LEGACY_WOOD_STAIRS,
-            XMaterial.LEGACY_TRAP_DOOR
+            XMaterial.DARK_OAK_STAIRS
+            //XMaterial.LEGACY_JUNGLE_WOOD_STAIRS,
+            //XMaterial.LEGACY_SPRUCE_WOOD_STAIRS,
+            //XMaterial.LEGACY_WOOD_STAIRS,
+            //XMaterial.LEGACY_TRAP_DOOR
     ));
 
     public static List<XMaterial> SHOVELS_BLOCKS = new ArrayList<>(Arrays.asList(
             XMaterial.CLAY,
             XMaterial.DIRT,
-            XMaterial.LEGACY_CONCRETE_POWDER,
+            //XMaterial.LEGACY_CONCRETE_POWDER,
             XMaterial.GRASS,
             XMaterial.GRAVEL,
             XMaterial.SAND,
