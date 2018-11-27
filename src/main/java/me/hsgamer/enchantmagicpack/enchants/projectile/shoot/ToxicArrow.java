@@ -68,7 +68,6 @@ public class ToxicArrow extends ProjectileShoot {
         public void run() {
             if (arrow.isDead()) {
                 arrows.remove(arrow).cancel();
-                cancel();
             }
             Location start = arrow.getLocation();
             for (Entity e : arrow.getNearbyEntities(offX, offY, offZ)) {
