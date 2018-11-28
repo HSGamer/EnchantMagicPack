@@ -23,6 +23,7 @@ public class ToxicArrow extends ProjectileShoot {
     private static String DURATION = "duration";
     private static String RANGE = "range";
     private static String DELAY = "delay";
+    private static String PARTICLE_AMOUNT = "particle-amount";
     private static Hashtable<Arrow, BukkitTask> arrows = new Hashtable<>();
 
     public ToxicArrow() {
@@ -34,6 +35,7 @@ public class ToxicArrow extends ProjectileShoot {
         settings.set(DURATION, 20, 20);
         settings.set(RANGE, 3, 2);
         settings.set(DELAY, 10, 2);
+        settings.set(PARTICLE_AMOUNT, 50);
     }
 
     public void applyProjectileShoot(LivingEntity user, ItemStack bow, int level, EntityShootBowEvent event) {
@@ -43,8 +45,8 @@ public class ToxicArrow extends ProjectileShoot {
         int amplifier = (int) settings.get(AMPLIFIER, level);
         double range = settings.get(RANGE, level);
         int delay = (int) settings.get(DELAY, level);
-        PotionEffect effect = new PotionEffect(PotionEffectType.POISON, duration, amplifier, true, true);
-        arrows.put((Arrow) projectile, Tasks.schedule(new ToxicArrowRunnable((Arrow) projectile, user, range, range, range, effect), delay, delay));
+        PotionEffect effect = new PotionEffect(PotionEffectType.POISON, duration, amplifier);
+        arrows.put((Arrow) projectile, Tasks.schedule(new ToxicArrowRunnable((Arrow) projectile, user, range, range, range, settings.getInt(PARTICLE_AMOUNT), effect), delay, 0));
     }
 
     class ToxicArrowRunnable extends BukkitRunnable {
@@ -54,14 +56,16 @@ public class ToxicArrow extends ProjectileShoot {
         double offZ;
         PotionEffect effect;
         LivingEntity user;
+        int particleAmount;
 
-        ToxicArrowRunnable(Arrow arrow, LivingEntity user, double offX, double offY, double offZ, PotionEffect effect) {
+        ToxicArrowRunnable(Arrow arrow, LivingEntity user, double offX, double offY, double offZ, int particleAmount, PotionEffect effect) {
             this.arrow = arrow;
             this.offX = offX;
             this.offY = offY;
             this.offZ = offZ;
             this.effect = effect;
             this.user = user;
+            this.particleAmount = particleAmount;
         }
 
         @Override
@@ -74,13 +78,13 @@ public class ToxicArrow extends ProjectileShoot {
                 if (!(e instanceof LivingEntity)) continue;
                 if (Protection.isAlly(user, (LivingEntity) e)) continue;
                 Location end = e.getLocation();
-                Vector dir = end.clone().subtract(start).toVector();
-                double distance = start.distance(end);
-                for (double i = 0; i < distance; i += 0.1) {
-                    dir.multiply(i);
-                    Location temp = start.clone().add(dir);
-                    temp.getWorld().spawnParticle(Particle.REDSTONE, temp, 5, 0, 0, 0, 0, new Particle.DustOptions(Color.GREEN, 1));
-                    dir.normalize();
+                Location temp = start.clone();
+                double distance = temp.distance(end);
+                double part = distance / particleAmount;
+                Vector dir = end.subtract(temp).toVector();
+                for (double i = 0; i < distance; i += part) {
+                    temp = temp.add(dir.multiply(i).normalize());
+                    temp.getWorld().spawnParticle(Particle.REDSTONE, temp, 10, 0.01, 0, 0, 0, new Particle.DustOptions(Color.GREEN, 3));
                 }
                 ((LivingEntity) e).addPotionEffect(effect, true);
             }
