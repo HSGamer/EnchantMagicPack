@@ -131,7 +131,7 @@ public enum XMaterial {
     BROWN_CONCRETE_POWDER("CONCRETE_POWDER", 12),
     BROWN_GLAZED_TERRACOTTA("BROWN_GLAZED_TERRACOTTA", 0),
     BROWN_MUSHROOM("BROWN_MUSHROOM", 0),
-    BROWN_MUSHROOM_BLOCK("BROWN_MUSHROOM", 0), //UNSURE
+    BROWN_MUSHROOM_BLOCK("HUGE_MUSHROOM_1", 0), //UNSURE
     BROWN_SHULKER_BOX("BROWN_SHULKER_BOX", 0),
     BROWN_STAINED_GLASS("STAINED_GLASS", 12),
     BROWN_STAINED_GLASS_PANE("STAINED_GLASS_PANE", 12),
@@ -697,7 +697,7 @@ public enum XMaterial {
     RED_CONCRETE_POWDER("CONCRETE_POWDER", 14),
     RED_GLAZED_TERRACOTTA("RED_GLAZED_TERRACOTTA", 0),
     RED_MUSHROOM("RED_MUSHROOM", 0),
-    RED_MUSHROOM_BLOCK("RED_MUSHROOM", 0),
+    RED_MUSHROOM_BLOCK("HUGE_MUSHROOM_2", 0),
     RED_NETHER_BRICKS("RED_NETHER_BRICK", 0),
     RED_SAND("SAND", 1),
     RED_SANDSTONE("RED_SANDSTONE", 0),
@@ -933,9 +933,7 @@ public enum XMaterial {
         }
         XMaterial xmat = fromMaterial(comp.getType());
         if(isDamageable(xmat)){
-            if(this.parseMaterial() == comp.getType()){
-                return true;
-            }
+            return this.parseMaterial() == comp.getType();
         }
         return false;
     }
