@@ -46,7 +46,7 @@ public class ToxicArrow extends ProjectileShoot {
         double range = settings.get(RANGE, level);
         int delay = (int) settings.get(DELAY, level);
         PotionEffect effect = new PotionEffect(PotionEffectType.POISON, duration, amplifier);
-        arrows.put((Arrow) projectile, Tasks.schedule(new ToxicArrowRunnable((Arrow) projectile, user, range, range, range, settings.getInt(PARTICLE_AMOUNT), effect), delay, 0));
+        arrows.put((Arrow) projectile, Tasks.schedule(new ToxicArrowRunnable((Arrow) projectile, user, range, range, range, settings.getInt(PARTICLE_AMOUNT), effect), delay, delay));
     }
 
     class ToxicArrowRunnable extends BukkitRunnable {
@@ -80,11 +80,11 @@ public class ToxicArrow extends ProjectileShoot {
                 Location end = e.getLocation();
                 Location temp = start.clone();
                 double distance = temp.distance(end);
-                double part = distance / particleAmount;
-                Vector dir = end.subtract(temp).toVector();
+                Vector dir = end.subtract(temp).toVector().multiply(0.1).normalize();
+                double part = dir.length();
                 for (double i = 0; i < distance; i += part) {
-                    temp = temp.add(dir.multiply(i).normalize());
-                    temp.getWorld().spawnParticle(Particle.REDSTONE, temp, 10, 0.01, 0, 0, 0, new Particle.DustOptions(Color.GREEN, 3));
+                    temp = temp.add(dir);
+                    temp.getWorld().spawnParticle(Particle.REDSTONE, temp, 2, 0.01, 0, 0, 0, new Particle.DustOptions(Color.GREEN, 3));
                 }
                 ((LivingEntity) e).addPotionEffect(effect, true);
             }
