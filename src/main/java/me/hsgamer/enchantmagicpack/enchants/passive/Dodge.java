@@ -27,7 +27,7 @@ public class Dodge extends CustomEnchantment {
 
     public void applyDefense(LivingEntity user, LivingEntity target, int level, EntityDamageEvent event) {
         if (Math.random() * 100 <= settings.get(CHANCE, level)) {
-            user.getWorld().playSound(user.getLocation(), Sound.ENTITY_ZOMBIE_BREAK_DOOR_WOOD, 1, 1);
+            user.getWorld().playSound(user.getLocation(), Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR, 1, 1);
             event.setCancelled(true);
         }
     }

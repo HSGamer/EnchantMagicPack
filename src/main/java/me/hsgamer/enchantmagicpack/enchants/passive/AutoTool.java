@@ -3,6 +3,7 @@ package me.hsgamer.enchantmagicpack.enchants.passive;
 import com.sucy.enchant.api.CustomEnchantment;
 import com.sucy.enchant.api.ItemSet;
 import me.hsgamer.enchantmagicpack.utils.ToolsUtils;
+import me.hsgamer.enchantmagicpack.utils.XMaterial;
 import org.bukkit.Material;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -24,7 +25,7 @@ public class AutoTool extends CustomEnchantment {
 
     public void applyInteractBlock(Player user, int level, PlayerInteractEvent event) {
         if (event.getAction() == Action.LEFT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-            Material blocktype = event.getClickedBlock().getType();
+            XMaterial blocktype = XMaterial.fromString(event.getClickedBlock().getType().toString());
             String itemtype = event.getMaterial().toString();
             String value;
             if (itemtype.startsWith("DIAMOND_")) {

@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="MCCore">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../MCCore/out/artifacts/MCCore_jar/MCCore.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

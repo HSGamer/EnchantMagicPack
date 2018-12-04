@@ -3,6 +3,7 @@ package me.hsgamer.enchantmagicpack.enchants.active;
 import com.rit.sucy.player.Protection;
 import com.sucy.enchant.api.Cooldowns;
 import com.sucy.enchant.api.CustomEnchantment;
+import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
@@ -45,10 +46,10 @@ public class Laser extends CustomEnchantment {
         double space = settings.getDouble(SPACE);
         for (double i = 0.0D; i < range; i += space) {
             Block tempblock = loc.getBlock();
-            if (!(tempblock.isEmpty() || tempblock.getType() == Material.GLASS || tempblock.getType() == Material.STAINED_GLASS || tempblock.getType() == Material.STAINED_GLASS_PANE || tempblock.getType() == Material.THIN_GLASS))
+            if (!(tempblock.isEmpty() || tempblock.getType() == Material.GLASS || tempblock.getType().toString().endsWith("STAINED_GLASS") || tempblock.getType().toString().endsWith("STAINED_GLASS_PANE")))
                 break;
             loc = loc.add(dir.multiply(1).normalize());
-            loc.getWorld().spawnParticle(Particle.REDSTONE, loc, 5, 0, 0, 0, 0);
+            loc.getWorld().spawnParticle(Particle.REDSTONE, loc, 5, 0, 0, 0, 0, new Particle.DustOptions(Color.RED, 1));
             for (Entity entity : loc.getWorld().getNearbyEntities(loc, .3, .3, .3)) {
                 if ((entity instanceof LivingEntity) && (entity.getEntityId() != user.getEntityId()) && !(entity instanceof ArmorStand) && !(Protection.isAlly(user, (LivingEntity) entity))) {
                     ((Damageable) entity).damage(settings.get(DAMAGE, level), user);
