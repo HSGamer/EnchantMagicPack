@@ -1,7 +1,6 @@
 package me.hsgamer.enchantmagicpack.enchants.projectile.hit;
 
 import com.sucy.enchant.api.Cooldowns;
-import org.bukkit.Color;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.potion.PotionEffect;
@@ -32,7 +31,7 @@ public class FrozenArrow extends ProjectileHit {
         // Check if the target is LivingEntity
         if (!(event.getHitEntity() instanceof LivingEntity)) return;
         // Freeze the target
-        ((LivingEntity) event.getHitEntity()).addPotionEffect(new PotionEffect(PotionEffectType.SLOW, settings.getInt(DURATION, level) * 20, 10, true, true, true));
+        ((LivingEntity) event.getHitEntity()).addPotionEffect(new PotionEffect(PotionEffectType.SLOW, settings.getInt(DURATION, level) * 20, 10, true, true));
         // Start the Cooldown
         Cooldowns.start(this, user);
     }

@@ -2,9 +2,10 @@ package me.hsgamer.enchantmagicpack.enchants.projectile.shoot;
 
 import com.rit.sucy.player.Protection;
 import com.sucy.enchant.api.Tasks;
+import me.hsgamer.enchantmagicpack.utils.FastParticle;
+import me.hsgamer.enchantmagicpack.utils.ParticleType;
 import org.bukkit.Color;
 import org.bukkit.Location;
-import org.bukkit.Particle;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -84,7 +85,7 @@ public class ToxicArrow extends ProjectileShoot {
                 double part = dir.length();
                 for (double i = 0; i < distance; i += part) {
                     temp = temp.add(dir);
-                    temp.getWorld().spawnParticle(Particle.REDSTONE, temp, 2, 0.01, 0, 0, 0, new Particle.DustOptions(Color.GREEN, 3));
+                    FastParticle.spawnParticle(temp.getWorld(), ParticleType.REDSTONE, temp, 2, 0, 0, 0, 0.01, Color.GREEN);
                 }
                 ((LivingEntity) e).addPotionEffect(effect, true);
             }

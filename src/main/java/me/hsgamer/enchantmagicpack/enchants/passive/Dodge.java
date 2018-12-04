@@ -2,7 +2,7 @@ package me.hsgamer.enchantmagicpack.enchants.passive;
 
 import com.sucy.enchant.api.CustomEnchantment;
 import com.sucy.enchant.api.ItemSet;
-import org.bukkit.Sound;
+import me.hsgamer.enchantmagicpack.utils.Sound;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.entity.EntityDamageEvent;
 
@@ -27,7 +27,7 @@ public class Dodge extends CustomEnchantment {
 
     public void applyDefense(LivingEntity user, LivingEntity target, int level, EntityDamageEvent event) {
         if (Math.random() * 100 <= settings.get(CHANCE, level)) {
-            user.getWorld().playSound(user.getLocation(), Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR, 1, 1);
+            user.getWorld().playSound(user.getLocation(), Sound.ZOMBIE_WOODBREAK.bukkitSound(), 1, 1);
             event.setCancelled(true);
         }
     }
