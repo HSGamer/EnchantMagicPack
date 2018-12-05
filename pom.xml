@@ -6,7 +6,7 @@
 
     <groupId>me.HSGamer</groupId>
     <artifactId>EnchantMagicPack</artifactId>
-    <version>1.1.1</version>
+    <version>1.2</version>
     <packaging>jar</packaging>
 
     <name>EnchantMagicPack</name>
