@@ -50,7 +50,7 @@ public class Laser extends CustomEnchantment {
             if (!(tempblock.isEmpty() || tempblock.getType() == Material.GLASS || tempblock.getType().toString().endsWith("STAINED_GLASS") || tempblock.getType().toString().endsWith("STAINED_GLASS_PANE")))
                 break;
             loc = loc.add(dir.multiply(1).normalize());
-            FastParticle.spawnParticle(loc.getWorld(), ParticleType.REDSTONE, loc, 5, 0, 0, 0, 0, Color.GREEN);
+            FastParticle.spawnParticle(loc.getWorld(), ParticleType.REDSTONE, loc, 5, 0, 0, 0, 0, Color.RED);
             for (Entity entity : loc.getWorld().getNearbyEntities(loc, .3, .3, .3)) {
                 if ((entity instanceof LivingEntity) && (entity.getEntityId() != user.getEntityId()) && !(entity instanceof ArmorStand) && !(Protection.isAlly(user, (LivingEntity) entity))) {
                     ((Damageable) entity).damage(settings.get(DAMAGE, level), user);
