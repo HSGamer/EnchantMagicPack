@@ -4,11 +4,10 @@ import com.sucy.enchant.api.CustomEnchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
-public class DeathEnchantment extends CustomEnchantment {
+public abstract class DeathEnchantment extends CustomEnchantment {
     DeathEnchantment(String name, String description) {
         super(name, description);
     }
 
-    public void applyOnDeath(Player user, int level, PlayerDeathEvent event) {
-    }
+    public void applyOnDeath(Player user, int level, PlayerDeathEvent event) {}
 }
