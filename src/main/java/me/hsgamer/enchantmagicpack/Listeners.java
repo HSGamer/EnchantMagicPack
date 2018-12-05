@@ -52,7 +52,7 @@ public class Listeners implements Listener {
         ProjectileSource shooter = event.getEntity().getShooter();
         if (!(shooter instanceof Player)) return;
         Projectile projectile = event.getEntity();
-        if (HIT_ENCHANTS.contains(projectile)) HIT_ENCHANTS.get(projectile).forEach((enchant, level) -> enchant.applyProjectileHit((LivingEntity) shooter, level, event));
+        if (HIT_ENCHANTS.contains(projectile)) HIT_ENCHANTS.remove(projectile).forEach((enchant, level) -> enchant.applyProjectileHit((LivingEntity) shooter, level, event));
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)

@@ -81,7 +81,7 @@ public class ToxicArrow extends ProjectileShoot {
                 Location end = e.getLocation();
                 Location temp = start.clone();
                 double distance = temp.distance(end);
-                Vector dir = end.subtract(temp).toVector().multiply(0.1).normalize();
+                Vector dir = end.subtract(temp).toVector().normalize().multiply(0.1);
                 double part = dir.length();
                 for (double i = 0; i < distance; i += part) {
                     temp = temp.add(dir);
