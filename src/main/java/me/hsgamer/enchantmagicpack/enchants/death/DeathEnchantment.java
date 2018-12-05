@@ -9,5 +9,6 @@ public abstract class DeathEnchantment extends CustomEnchantment {
         super(name, description);
     }
 
-    public void applyOnDeath(Player user, int level, PlayerDeathEvent event) {}
+    public void applyOnDeath(Player user, int level, PlayerDeathEvent event) {
+    }
 }
