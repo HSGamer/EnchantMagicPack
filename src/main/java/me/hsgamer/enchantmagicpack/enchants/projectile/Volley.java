@@ -1,4 +1,4 @@
-package me.hsgamer.enchantmagicpack.enchants.projectile.shoot;
+package me.hsgamer.enchantmagicpack.enchants.projectile;
 
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Arrow.PickupStatus;

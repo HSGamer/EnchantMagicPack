@@ -1,4 +1,4 @@
-package me.hsgamer.enchantmagicpack.enchants.projectile.hit;
+package me.hsgamer.enchantmagicpack.enchants.projectile;
 
 import com.sucy.enchant.api.Cooldowns;
 import org.bukkit.entity.LivingEntity;

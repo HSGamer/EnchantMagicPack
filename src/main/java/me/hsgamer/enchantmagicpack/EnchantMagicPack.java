@@ -9,12 +9,12 @@ import me.hsgamer.enchantmagicpack.enchants.passive.Dodge;
 import me.hsgamer.enchantmagicpack.enchants.passive.HitBehind;
 import me.hsgamer.enchantmagicpack.enchants.passive.StunHit;
 import me.hsgamer.enchantmagicpack.enchants.potion.passive.Shining;
-import me.hsgamer.enchantmagicpack.enchants.projectile.hit.ExplosiveArrow;
-import me.hsgamer.enchantmagicpack.enchants.projectile.hit.FrozenArrow;
-import me.hsgamer.enchantmagicpack.enchants.projectile.hit.SpikeArrow;
-import me.hsgamer.enchantmagicpack.enchants.projectile.shoot.GravityArrow;
-import me.hsgamer.enchantmagicpack.enchants.projectile.shoot.ToxicArrow;
-import me.hsgamer.enchantmagicpack.enchants.projectile.shoot.Volley;
+import me.hsgamer.enchantmagicpack.enchants.projectile.ExplosiveArrow;
+import me.hsgamer.enchantmagicpack.enchants.projectile.FrozenArrow;
+import me.hsgamer.enchantmagicpack.enchants.projectile.SpikeArrow;
+import me.hsgamer.enchantmagicpack.enchants.projectile.GravityArrow;
+import me.hsgamer.enchantmagicpack.enchants.projectile.ToxicArrow;
+import me.hsgamer.enchantmagicpack.enchants.projectile.Volley;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
 

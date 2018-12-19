@@ -1,4 +1,4 @@
-package me.hsgamer.enchantmagicpack.enchants.projectile.shoot;
+package me.hsgamer.enchantmagicpack.enchants.projectile;
 
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.entity.EntityShootBowEvent;
