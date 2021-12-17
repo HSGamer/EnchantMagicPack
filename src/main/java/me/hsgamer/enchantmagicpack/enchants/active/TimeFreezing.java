@@ -3,7 +3,6 @@ package me.hsgamer.enchantmagicpack.enchants.active;
 import com.sucy.enchant.api.Cooldowns;
 import com.sucy.enchant.api.CustomEnchantment;
 import com.sucy.enchant.api.Tasks;
-import me.hsgamer.enchantmagicpack.EnchantMagicPack;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
@@ -14,17 +13,18 @@ import org.bukkit.entity.Projectile;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class TimeFreezing extends CustomEnchantment {
     private static final String LENGTH = "length";
     private static final String TIME = "time";
     private static final String FREQUENCY = "frequency";
     private static final Map<Entity, Vector> vector = new HashMap<>();
-    private static final Map<UUID, BukkitTask> tasks = new HashMap<>();
 
     public TimeFreezing() {
         super("Time-Freezing", "Make the nearby projectiles stop moving");
@@ -44,15 +44,24 @@ public class TimeFreezing extends CustomEnchantment {
         if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
             if (Cooldowns.onCooldown(this, user, settings, level)) return;
             Cooldowns.start(this, user);
-            double length = settings.get(LENGTH, level);
-            int time = (int) (settings.get(TIME, level) * 20);
-            Location loc = user.getLocation();
-            int frequency = (int) settings.get(FREQUENCY, level);
-            List<Entity> entities = new ArrayList<>();
-            tasks.put(user.getUniqueId(), Tasks.schedule(new BukkitRunnable() {
+
+            final double length = settings.get(LENGTH, level);
+            final int time = (int) (settings.get(TIME, level) * 20);
+            final int frequency = (int) settings.get(FREQUENCY, level);
+
+            final Location loc = user.getLocation();
+            final List<Entity> entities = new ArrayList<>();
+            Tasks.schedule(new BukkitRunnable() {
+                private int currentTime = time;
 
                 @Override
                 public void run() {
+                    if (currentTime > 0) {
+                        currentTime -= frequency;
+                    } else {
+                        cancel();
+                        return;
+                    }
                     loc.getWorld().spawnParticle(Particle.CRIT_MAGIC, loc, (int) (length * 150), length, length, length, 0.01);
                     loc.getWorld().playSound(loc, Sound.BLOCK_NOTE_BLOCK_PLING, 10, 2);
                     for (Entity entity : loc.getWorld().getNearbyEntities(loc, length, length, length)) {
@@ -66,19 +75,17 @@ public class TimeFreezing extends CustomEnchantment {
                         }
                     }
                 }
-            }, frequency, frequency));
-            new BukkitRunnable() {
 
                 @Override
-                public void run() {
-                    tasks.remove(user.getUniqueId()).cancel();
+                public synchronized void cancel() throws IllegalStateException {
+                    super.cancel();
                     for (Entity entity : entities) {
                         entity.setGravity(true);
                         entity.setVelocity(vector.get(entity));
                         vector.remove(entity);
                     }
                 }
-            }.runTaskLater(EnchantMagicPack.getInstance(), time);
+            }, frequency, frequency);
         }
     }
 }
