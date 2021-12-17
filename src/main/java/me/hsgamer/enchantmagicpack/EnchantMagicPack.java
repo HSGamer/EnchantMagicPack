@@ -8,7 +8,6 @@ import me.hsgamer.enchantmagicpack.enchants.passive.AutoTool;
 import me.hsgamer.enchantmagicpack.enchants.passive.Dodge;
 import me.hsgamer.enchantmagicpack.enchants.passive.HitBehind;
 import me.hsgamer.enchantmagicpack.enchants.passive.StunHit;
-import me.hsgamer.enchantmagicpack.enchants.potion.passive.Shining;
 import me.hsgamer.enchantmagicpack.enchants.projectile.*;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -44,7 +43,6 @@ public final class EnchantMagicPack extends JavaPlugin implements EnchantPlugin 
                 new Dodge(),
                 new HitBehind(),
                 new StunHit(),
-                new Shining(),
                 new ExplosiveArrow(),
                 new FrozenArrow(),
                 new SpikeArrow(),

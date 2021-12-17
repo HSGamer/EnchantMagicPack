@@ -37,6 +37,7 @@ public class Laser extends CustomEnchantment {
         Cooldowns.configure(settings, 5, 0);
     }
 
+    @Override
     public void applyInteractBlock(Player user, int level, PlayerInteractEvent event) {
         if (!(event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_AIR)) return;
         if (Cooldowns.onCooldown(this, user, settings, level)) return;

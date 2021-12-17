@@ -25,6 +25,7 @@ public class Dodge extends CustomEnchantment {
 
     }
 
+    @Override
     public void applyDefense(LivingEntity user, LivingEntity target, int level, EntityDamageEvent event) {
         if (Math.random() * 100 <= settings.get(CHANCE, level)) {
             user.getWorld().playSound(user.getLocation(), Sound.ENTITY_ZOMBIE_ATTACK_WOODEN_DOOR, 1, 1);

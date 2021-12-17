@@ -29,21 +29,15 @@ public class ExplosiveArrow extends ProjectileHit {
     }
 
     public void applyProjectileHit(LivingEntity user, int level, ProjectileHitEvent event) {
-        // Check if the user is on Cooldown
         if (Cooldowns.onCooldown(this, user, settings, level)) return;
-        // Check if the location is Null
         if (event.getHitEntity() == null) return;
-        // Get the location of the target
         Location target = event.getHitEntity().getLocation();
-        // Create the explosion on the enemy's location
         event.getHitEntity().getWorld().createExplosion(target.getX(), target.getY(), target.getZ(), settings.getFloat(DAMAGE, level), settings.getBoolean(BLOCK_FIRE), settings.getBoolean(BLOCK_BREAK));
-        // Set the entity nearby on fire
         for (Entity e : target.getWorld().getNearbyEntities(target, settings.getInt(DAMAGE, level), settings.getInt(DAMAGE, level), settings.getInt(DAMAGE, level))) {
             if (e instanceof LivingEntity livingEntity && !Protection.isAlly(user, livingEntity)) {
                 e.setFireTicks(60);
             }
         }
-        // Start the Cooldown
         Cooldowns.start(this, user);
     }
 }

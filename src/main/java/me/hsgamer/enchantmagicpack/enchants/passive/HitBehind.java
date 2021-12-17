@@ -30,6 +30,7 @@ public class HitBehind extends CustomEnchantment {
 
     }
 
+    @Override
     public void applyOnHit(LivingEntity user, LivingEntity target, int level, EntityDamageByEntityEvent event) {
         if (!((Player) user).isSneaking()) return;
         if (Math.random() * 100 <= settings.get(CHANCE, level)) {

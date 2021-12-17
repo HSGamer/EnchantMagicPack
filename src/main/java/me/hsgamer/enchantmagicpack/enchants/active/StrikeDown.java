@@ -4,7 +4,6 @@ import com.sucy.enchant.api.Cooldowns;
 import com.sucy.enchant.api.CustomEnchantment;
 import mc.promcteam.engine.mccore.util.Protection;
 import org.bukkit.Material;
-import org.bukkit.entity.Damageable;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
@@ -29,12 +28,13 @@ public class StrikeDown extends CustomEnchantment {
         Cooldowns.configure(settings, 5, 0);
     }
 
+    @Override
     public void applyInteractEntity(final Player player, final int level, final PlayerInteractEntityEvent event) {
         if (!(event.getRightClicked() instanceof LivingEntity livingEntity) || Protection.isAlly(player, livingEntity))
             return;
         if (Cooldowns.onCooldown(this, player, settings, level)) return;
         event.getRightClicked().getWorld().strikeLightning(event.getRightClicked().getLocation());
-        ((Damageable) event.getRightClicked()).damage(settings.get(DAMAGE, level), player);
+        livingEntity.damage(settings.get(DAMAGE, level), player);
         Cooldowns.start(this, player);
     }
 

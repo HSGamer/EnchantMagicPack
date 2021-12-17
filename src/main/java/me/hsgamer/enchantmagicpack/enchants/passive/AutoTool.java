@@ -22,6 +22,7 @@ public class AutoTool extends CustomEnchantment {
         addNaturalItems(ItemSet.SWORDS.getItems());
     }
 
+    @Override
     public void applyInteractBlock(Player user, int level, PlayerInteractEvent event) {
         if (event.getAction() == Action.LEFT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
             Material blocktype = event.getClickedBlock().getType();
@@ -51,6 +52,7 @@ public class AutoTool extends CustomEnchantment {
         }
     }
 
+    @Override
     public void applyOnHit(LivingEntity user, LivingEntity target, int level, EntityDamageByEntityEvent event) {
         if (!(user instanceof Player)) return;
         ItemStack item = ((Player) user).getInventory().getItemInMainHand();

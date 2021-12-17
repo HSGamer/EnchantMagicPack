@@ -87,7 +87,7 @@ public class ToxicArrow extends ProjectileShoot {
                     temp = temp.add(dir);
                     temp.getWorld().spawnParticle(Particle.REDSTONE, temp, 2, 0, 0, 0, 0, new Particle.DustOptions(Color.GREEN, 1));
                 }
-                livingEntity.addPotionEffect(effect, true);
+                livingEntity.addPotionEffect(effect);
             }
         }
     }

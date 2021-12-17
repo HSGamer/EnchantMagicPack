@@ -25,6 +25,7 @@ public class SelfExplode extends DeathEnchantment {
         addNaturalItems(Material.PAPER);
     }
 
+    @Override
     public void applyOnDeath(Player user, int level, PlayerDeathEvent event) {
         Location loc = user.getLocation();
         loc.getWorld().createExplosion(loc.getX(), loc.getY(), loc.getZ(), settings.getFloat(DAMAGE, level), settings.getBoolean(BLOCK_FIRE), settings.getBoolean(BLOCK_BREAK));

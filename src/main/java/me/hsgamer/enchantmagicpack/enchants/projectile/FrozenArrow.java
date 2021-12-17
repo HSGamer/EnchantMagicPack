@@ -24,15 +24,10 @@ public class FrozenArrow extends ProjectileHit {
     }
 
     public void applyProjectileHit(LivingEntity user, int level, ProjectileHitEvent event) {
-        // Check if the user is on Cooldown
         if (Cooldowns.onCooldown(this, user, settings, level)) return;
-        // Check if the location is Null
         if (event.getHitEntity() == null) return;
-        // Check if the target is LivingEntity
         if (!(event.getHitEntity() instanceof LivingEntity)) return;
-        // Freeze the target
         ((LivingEntity) event.getHitEntity()).addPotionEffect(new PotionEffect(PotionEffectType.SLOW, settings.getInt(DURATION, level) * 20, 10, true, true));
-        // Start the Cooldown
         Cooldowns.start(this, user);
     }
 }
