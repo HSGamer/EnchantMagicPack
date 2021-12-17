@@ -41,51 +41,52 @@ public class TimeFreezing extends CustomEnchantment {
 
     @Override
     public void applyInteractBlock(Player user, int level, PlayerInteractEvent event) {
-        if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-            if (Cooldowns.onCooldown(this, user, settings, level)) return;
-            Cooldowns.start(this, user);
-
-            final double length = settings.get(LENGTH, level);
-            final int time = (int) (settings.get(TIME, level) * 20);
-            final int frequency = (int) settings.get(FREQUENCY, level);
-
-            final Location loc = user.getLocation();
-            final List<Entity> entities = new ArrayList<>();
-            Tasks.schedule(new BukkitRunnable() {
-                private int currentTime = time;
-
-                @Override
-                public void run() {
-                    if (currentTime > 0) {
-                        currentTime -= frequency;
-                    } else {
-                        cancel();
-                        return;
-                    }
-                    loc.getWorld().spawnParticle(Particle.CRIT_MAGIC, loc, (int) (length * 150), length, length, length, 0.01);
-                    loc.getWorld().playSound(loc, Sound.BLOCK_NOTE_BLOCK_PLING, 10, 2);
-                    for (Entity entity : loc.getWorld().getNearbyEntities(loc, length, length, length)) {
-                        if (entity instanceof Projectile) {
-                            vector.computeIfAbsent(entity, e -> {
-                                entities.add(entity);
-                                entity.setGravity(false);
-                                entity.setVelocity(new Vector(0, 0, 0));
-                                return entity.getVelocity().multiply(entity.getVelocity().length());
-                            });
-                        }
-                    }
-                }
-
-                @Override
-                public synchronized void cancel() throws IllegalStateException {
-                    super.cancel();
-                    for (Entity entity : entities) {
-                        entity.setGravity(true);
-                        entity.setVelocity(vector.get(entity));
-                        vector.remove(entity);
-                    }
-                }
-            }, frequency, frequency);
+        if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) {
+            return;
         }
+        if (Cooldowns.onCooldown(this, user, settings, level)) return;
+        Cooldowns.start(this, user);
+
+        final double length = settings.get(LENGTH, level);
+        final int time = (int) (settings.get(TIME, level) * 20);
+        final int frequency = (int) settings.get(FREQUENCY, level);
+
+        final Location loc = user.getLocation();
+        final List<Entity> entities = new ArrayList<>();
+        Tasks.schedule(new BukkitRunnable() {
+            private int currentTime = time;
+
+            @Override
+            public void run() {
+                if (currentTime > 0) {
+                    currentTime -= frequency;
+                } else {
+                    cancel();
+                    return;
+                }
+                loc.getWorld().spawnParticle(Particle.CRIT_MAGIC, loc, (int) (length * 150), length, length, length, 0.01);
+                loc.getWorld().playSound(loc, Sound.BLOCK_NOTE_BLOCK_PLING, 10, 2);
+                for (Entity entity : loc.getWorld().getNearbyEntities(loc, length, length, length)) {
+                    if (entity instanceof Projectile) {
+                        vector.computeIfAbsent(entity, e -> {
+                            entities.add(entity);
+                            entity.setGravity(false);
+                            entity.setVelocity(new Vector(0, 0, 0));
+                            return entity.getVelocity().multiply(entity.getVelocity().length());
+                        });
+                    }
+                }
+            }
+
+            @Override
+            public synchronized void cancel() throws IllegalStateException {
+                super.cancel();
+                for (Entity entity : entities) {
+                    entity.setGravity(true);
+                    entity.setVelocity(vector.get(entity));
+                    vector.remove(entity);
+                }
+            }
+        }, frequency, frequency);
     }
 }
