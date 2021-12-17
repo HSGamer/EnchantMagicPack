@@ -9,7 +9,6 @@ import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
 import org.bukkit.event.block.Action;
@@ -57,13 +56,13 @@ public class TimeFreezing extends CustomEnchantment {
                     loc.getWorld().spawnParticle(Particle.CRIT_MAGIC, loc, (int) (length * 150), length, length, length, 0.01);
                     loc.getWorld().playSound(loc, Sound.BLOCK_NOTE_BLOCK_PLING, 10, 2);
                     for (Entity entity : loc.getWorld().getNearbyEntities(loc, length, length, length)) {
-                        if (entity instanceof Projectile
-                                || entity.getType().equals(EntityType.SMALL_FIREBALL) || entity.getType().equals(EntityType.FIREBALL) || entity.getType().equals(EntityType.DRAGON_FIREBALL)) {
-                            if (vector.containsKey(entity)) continue;
-                            entities.add(entity);
-                            vector.put(entity, entity.getVelocity().multiply(entity.getVelocity().length()));
-                            entity.setGravity(false);
-                            entity.setVelocity(new Vector(0, 0, 0));
+                        if (entity instanceof Projectile) {
+                            vector.computeIfAbsent(entity, e -> {
+                                entities.add(entity);
+                                entity.setGravity(false);
+                                entity.setVelocity(new Vector(0, 0, 0));
+                                return entity.getVelocity().multiply(entity.getVelocity().length());
+                            });
                         }
                     }
                 }

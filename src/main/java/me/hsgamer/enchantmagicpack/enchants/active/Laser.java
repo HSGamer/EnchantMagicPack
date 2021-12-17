@@ -8,7 +8,10 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.block.Block;
-import org.bukkit.entity.*;
+import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.util.Vector;
@@ -53,7 +56,7 @@ public class Laser extends CustomEnchantment {
             loc.getWorld().spawnParticle(Particle.REDSTONE, loc, 5, 0, 0, 0, 0, new Particle.DustOptions(Color.RED, 1));
             for (Entity entity : loc.getWorld().getNearbyEntities(loc, .3, .3, .3)) {
                 if ((entity instanceof LivingEntity livingEntity) && (entity.getEntityId() != user.getEntityId()) && !(entity instanceof ArmorStand) && !(Protection.isAlly(user, livingEntity))) {
-                    ((Damageable) entity).damage(settings.get(DAMAGE, level), user);
+                    livingEntity.damage(settings.get(DAMAGE, level), user);
                 }
             }
         }
