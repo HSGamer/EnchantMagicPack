@@ -84,8 +84,8 @@ public enum ParticleType {
         SERVER_VERSION_ID = Integer.parseInt(ver.charAt(4) == '_' ? Character.toString(ver.charAt(3)) : ver.substring(3, 5));
     }
 
-    private String name;
-    private int minimalVersion;
+    private final String name;
+    private final int minimalVersion;
 
     ParticleType(String name) {
         this(name, -1);

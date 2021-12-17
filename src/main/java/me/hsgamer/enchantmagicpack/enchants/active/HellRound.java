@@ -1,8 +1,8 @@
 package me.hsgamer.enchantmagicpack.enchants.active;
 
-import com.rit.sucy.player.Protection;
 import com.sucy.enchant.api.Cooldowns;
 import com.sucy.enchant.api.CustomEnchantment;
+import mc.promcteam.engine.mccore.util.Protection;
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.entity.Damageable;
@@ -40,7 +40,7 @@ public class HellRound extends CustomEnchantment {
         user.getWorld().spawnParticle(Particle.FLAME, user.getLocation(), (int) (100 * range), range, 2.0, range, 0.05);
         user.getWorld().spawnParticle(Particle.SMOKE_LARGE, user.getLocation(), (int) (50 * range), range, 2.0, range, 0.1);
         for (Entity e : user.getNearbyEntities(range, 2, range)) {
-            if (!(e instanceof LivingEntity) || Protection.isAlly(user, (LivingEntity) e)) continue;
+            if (!(e instanceof LivingEntity livingEntity) || Protection.isAlly(user, livingEntity)) continue;
             ((Damageable) e).damage(settings.get(DAMAGE, level), user);
         }
         Cooldowns.start(this, user);

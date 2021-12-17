@@ -1,7 +1,7 @@
 package me.hsgamer.enchantmagicpack.enchants.projectile;
 
-import com.rit.sucy.player.Protection;
 import com.sucy.enchant.api.Tasks;
+import mc.promcteam.engine.mccore.util.Protection;
 import me.hsgamer.enchantmagicpack.utils.FastParticle;
 import me.hsgamer.enchantmagicpack.utils.ParticleType;
 import org.bukkit.Color;
@@ -17,15 +17,16 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
 
-import java.util.Hashtable;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ToxicArrow extends ProjectileShoot {
-    private static String AMPLIFIER = "amplifier";
-    private static String DURATION = "duration";
-    private static String RANGE = "range";
-    private static String DELAY = "delay";
-    private static String PARTICLE_AMOUNT = "particle-amount";
-    private static Hashtable<Arrow, BukkitTask> arrows = new Hashtable<>();
+    private static final String AMPLIFIER = "amplifier";
+    private static final String DURATION = "duration";
+    private static final String RANGE = "range";
+    private static final String DELAY = "delay";
+    private static final String PARTICLE_AMOUNT = "particle-amount";
+    private static final Map<Arrow, BukkitTask> arrows = new HashMap<>();
 
     public ToxicArrow() {
         super("ToxicArrow", "Make nearby entity be poisoned");
@@ -50,7 +51,7 @@ public class ToxicArrow extends ProjectileShoot {
         arrows.put((Arrow) projectile, Tasks.schedule(new ToxicArrowRunnable((Arrow) projectile, user, range, range, range, settings.getInt(PARTICLE_AMOUNT), effect), delay, delay));
     }
 
-    class ToxicArrowRunnable extends BukkitRunnable {
+    static class ToxicArrowRunnable extends BukkitRunnable {
         Arrow arrow;
         double offX;
         double offY;
@@ -76,8 +77,8 @@ public class ToxicArrow extends ProjectileShoot {
             }
             Location start = arrow.getLocation();
             for (Entity e : arrow.getNearbyEntities(offX, offY, offZ)) {
-                if (!(e instanceof LivingEntity)) continue;
-                if (Protection.isAlly(user, (LivingEntity) e)) continue;
+                if (!(e instanceof LivingEntity livingEntity)) continue;
+                if (Protection.isAlly(user, livingEntity)) continue;
                 Location end = e.getLocation();
                 Location temp = start.clone();
                 double distance = temp.distance(end);
@@ -87,7 +88,7 @@ public class ToxicArrow extends ProjectileShoot {
                     temp = temp.add(dir);
                     FastParticle.spawnParticle(temp.getWorld(), ParticleType.REDSTONE, temp, 2, 0, 0, 0, 0.01, Color.GREEN);
                 }
-                ((LivingEntity) e).addPotionEffect(effect, true);
+                livingEntity.addPotionEffect(effect, true);
             }
         }
     }

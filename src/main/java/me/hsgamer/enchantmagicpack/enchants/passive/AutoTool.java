@@ -4,7 +4,6 @@ import com.sucy.enchant.api.CustomEnchantment;
 import com.sucy.enchant.api.ItemSet;
 import me.hsgamer.enchantmagicpack.utils.ToolsUtils;
 import me.hsgamer.enchantmagicpack.utils.XMaterial;
-import org.bukkit.Material;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;

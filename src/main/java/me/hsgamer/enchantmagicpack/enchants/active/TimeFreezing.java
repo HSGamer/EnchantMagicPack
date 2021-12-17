@@ -18,17 +18,14 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
 
-import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class TimeFreezing extends CustomEnchantment {
     private static final String LENGTH = "length";
     private static final String TIME = "time";
     private static final String FREQUENCY = "frequency";
-    private static Hashtable<Entity, Vector> vector = new Hashtable<>();
-    private static Hashtable<UUID, BukkitTask> tasks = new Hashtable<>();
+    private static final Map<Entity, Vector> vector = new HashMap<>();
+    private static final Map<UUID, BukkitTask> tasks = new HashMap<>();
 
     public TimeFreezing() {
         super("Time-Freezing", "Make the nearby projectiles stop moving");
@@ -58,7 +55,7 @@ public class TimeFreezing extends CustomEnchantment {
                 public void run() {
                     loc.getWorld().spawnParticle(Particle.CRIT_MAGIC, loc, (int) (length * 150), length, length, length, 0.01);
                     loc.getWorld().playSound(loc, Sound.NOTE_PLING.bukkitSound(), 10, 2);
-                    for (Entity entity : loc.getNearbyEntities(length, length, length)) {
+                    for (Entity entity : loc.getWorld().getNearbyEntities(loc, length, length, length)) {
                         if (entity instanceof Projectile
                                 || entity.getType().equals(EntityType.SMALL_FIREBALL) || entity.getType().equals(EntityType.FIREBALL) || entity.getType().equals(EntityType.DRAGON_FIREBALL)) {
                             if (vector.containsKey(entity)) continue;
@@ -81,7 +78,7 @@ public class TimeFreezing extends CustomEnchantment {
                         vector.remove(entity);
                     }
                 }
-            }.runTaskLater(EnchantMagicPack.getInstace(), time);
+            }.runTaskLater(EnchantMagicPack.getInstance(), time);
         }
     }
 }

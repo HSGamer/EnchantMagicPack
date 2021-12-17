@@ -38,10 +38,8 @@ public class HitBehind extends CustomEnchantment {
             if ((target.getType() == EntityType.SPIDER) || (target.getType() == EntityType.CAVE_SPIDER) || (target.getType() == EntityType.CHICKEN)) {
                 newTeleport.setPitch((float) 20.0);
             }
-            if (target instanceof Zombie) {
-                if (((Zombie) target).isBaby()) {
-                    newTeleport.setPitch((float) 20.0);
-                }
+            if (target instanceof Zombie zombie && !zombie.isAdult()) {
+                newTeleport.setPitch((float) 20.0);
             }
             if (newTeleport.getBlock().getType() == Material.AIR) {
                 user.getWorld().spawnParticle(Particle.FLAME, user.getLocation(), 100, 0.1, 0.1, 0.1, 0.05);

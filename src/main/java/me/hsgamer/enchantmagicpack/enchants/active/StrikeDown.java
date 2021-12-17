@@ -1,8 +1,8 @@
 package me.hsgamer.enchantmagicpack.enchants.active;
 
-import com.rit.sucy.player.Protection;
 import com.sucy.enchant.api.Cooldowns;
 import com.sucy.enchant.api.CustomEnchantment;
+import mc.promcteam.engine.mccore.util.Protection;
 import org.bukkit.Material;
 import org.bukkit.entity.Damageable;
 import org.bukkit.entity.LivingEntity;
@@ -30,7 +30,7 @@ public class StrikeDown extends CustomEnchantment {
     }
 
     public void applyInteractEntity(final Player player, final int level, final PlayerInteractEntityEvent event) {
-        if (!(event.getRightClicked() instanceof LivingEntity) || Protection.isAlly(player, (LivingEntity) event.getRightClicked()))
+        if (!(event.getRightClicked() instanceof LivingEntity livingEntity) || Protection.isAlly(player, livingEntity))
             return;
         if (Cooldowns.onCooldown(this, player, settings, level)) return;
         event.getRightClicked().getWorld().strikeLightning(event.getRightClicked().getLocation());

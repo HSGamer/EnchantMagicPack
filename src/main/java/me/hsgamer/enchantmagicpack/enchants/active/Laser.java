@@ -1,8 +1,8 @@
 package me.hsgamer.enchantmagicpack.enchants.active;
 
-import com.rit.sucy.player.Protection;
 import com.sucy.enchant.api.Cooldowns;
 import com.sucy.enchant.api.CustomEnchantment;
+import mc.promcteam.engine.mccore.util.Protection;
 import me.hsgamer.enchantmagicpack.utils.FastParticle;
 import me.hsgamer.enchantmagicpack.utils.ParticleType;
 import org.bukkit.Color;
@@ -52,7 +52,7 @@ public class Laser extends CustomEnchantment {
             loc = loc.add(dir.multiply(1).normalize());
             FastParticle.spawnParticle(loc.getWorld(), ParticleType.REDSTONE, loc, 5, 0, 0, 0, 0, Color.RED);
             for (Entity entity : loc.getWorld().getNearbyEntities(loc, .3, .3, .3)) {
-                if ((entity instanceof LivingEntity) && (entity.getEntityId() != user.getEntityId()) && !(entity instanceof ArmorStand) && !(Protection.isAlly(user, (LivingEntity) entity))) {
+                if ((entity instanceof LivingEntity livingEntity) && (entity.getEntityId() != user.getEntityId()) && !(entity instanceof ArmorStand) && !(Protection.isAlly(user, livingEntity))) {
                     ((Damageable) entity).damage(settings.get(DAMAGE, level), user);
                 }
             }

@@ -1,7 +1,7 @@
 package me.hsgamer.enchantmagicpack.enchants.projectile;
 
+import org.bukkit.entity.AbstractArrow;
 import org.bukkit.entity.Arrow;
-import org.bukkit.entity.Arrow.PickupStatus;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.inventory.ItemStack;
@@ -28,24 +28,24 @@ public class Volley extends ProjectileShoot {
         Arrow arrow = (Arrow) event.getProjectile();
         int fireticks = arrow.getFireTicks();
         int knockback = arrow.getKnockbackStrength();
-        double damage = arrow.spigot().getDamage();
+        double damage = arrow.getDamage();
         boolean crit = arrow.isCritical();
         double anglebetween = (45 / (amount - 1)) * Math.PI / 180;
         double pitch = (user.getLocation().getPitch() + 90) * Math.PI / 180;
-        double yaw = (user.getLocation().getYaw() + 90 - 45 / 2) * Math.PI / 180;
+        double yaw = (user.getLocation().getYaw() + 90 - 45D / 2) * Math.PI / 180;
         double sZ = Math.cos(pitch);
         for (int i = 0; i < amount; i++) {
             double nX = Math.sin(pitch) * Math.cos(yaw + anglebetween * i);
             double nY = Math.sin(pitch) * Math.sin(yaw + anglebetween * i);
             Vector newVec = new Vector(nX, sZ, nY);
             Arrow newarrow = user.launchProjectile(Arrow.class);
-            newarrow.spigot().setDamage(damage);
+            newarrow.setDamage(damage);
             newarrow.setShooter(user);
             newarrow.setVelocity(newVec.normalize().multiply(arrow.getVelocity().length()));
             newarrow.setFireTicks(fireticks);
             newarrow.setKnockbackStrength(knockback);
             newarrow.setCritical(crit);
-            newarrow.setPickupStatus(PickupStatus.CREATIVE_ONLY);
+            newarrow.setPickupStatus(AbstractArrow.PickupStatus.CREATIVE_ONLY);
         }
         arrow.remove();
     }

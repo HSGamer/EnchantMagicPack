@@ -18,12 +18,11 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.projectiles.ProjectileSource;
 
 import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.Map;
 import java.util.UUID;
 
 public class Listeners implements Listener {
-    private static Hashtable<UUID, HashMap<ProjectileHit, Integer>> HIT_ENCHANTS = new Hashtable<>();
+    private static final Map<UUID, Map<ProjectileHit, Integer>> HIT_ENCHANTS = new HashMap<>();
 
     Listeners(Plugin plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
@@ -36,7 +35,7 @@ public class Listeners implements Listener {
         UUID projectile = event.getProjectile().getUniqueId();
         ItemStack item = event.getBow();
         Map<CustomEnchantment, Integer> enchants = Enchantments.getCustomEnchantments(event.getBow());
-        HashMap<ProjectileHit, Integer> hitEnchants = new HashMap<>();
+        Map<ProjectileHit, Integer> hitEnchants = new HashMap<>();
         enchants.forEach((enchant, level) -> {
             if (enchant instanceof ProjectileShoot)
                 ((ProjectileShoot) enchant).applyProjectileShoot(entity, item, level, event);

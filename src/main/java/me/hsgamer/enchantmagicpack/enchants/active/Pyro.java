@@ -14,14 +14,15 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
-import java.util.Hashtable;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public class Pyro extends CustomEnchantment {
-    private static Hashtable<UUID, BukkitTask> tasks = new Hashtable<>();
-    private static String DISTANCE = "distance";
-    private static String TIME = "time";
-    private static String FIRETICKS = "fire-ticks";
+    private static final Map<UUID, BukkitTask> tasks = new HashMap<>();
+    private static final String DISTANCE = "distance";
+    private static final String TIME = "time";
+    private static final String FIRETICKS = "fire-ticks";
 
     public Pyro() {
         super("Pyro", "Make the entities around on fire");
@@ -57,6 +58,6 @@ public class Pyro extends CustomEnchantment {
             public void run() {
                 tasks.remove(user.getUniqueId()).cancel();
             }
-        }.runTaskLater(EnchantMagicPack.getInstace(), time);
+        }.runTaskLater(EnchantMagicPack.getInstance(), time);
     }
 }

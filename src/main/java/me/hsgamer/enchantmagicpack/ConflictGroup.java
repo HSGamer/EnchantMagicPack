@@ -1,12 +1,11 @@
 package me.hsgamer.enchantmagicpack;
 
-public class ConflictGroup {
-    public static final String
-            POTION_ABSORB = "potion-absorb",
-            POTION_REFLECT = "potion-reflect",
-            POTION_INFLICT = "potion-hit",
-            POTION_STEAL = "potion-steal",
-            POTION_PASSIVE = "potion-passive",
-            PROJECTILE_HIT = "projectile-hit",
-            PROJECTILE_SHOOT = "projectile-shoot";
+public final class ConflictGroup {
+    public static final String POTION_PASSIVE = "potion-passive";
+    public static final String PROJECTILE_HIT = "projectile-hit";
+    public static final String PROJECTILE_SHOOT = "projectile-shoot";
+
+    private ConflictGroup() {
+        // EMPTY
+    }
 }

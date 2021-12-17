@@ -9,32 +9,27 @@ import me.hsgamer.enchantmagicpack.enchants.passive.Dodge;
 import me.hsgamer.enchantmagicpack.enchants.passive.HitBehind;
 import me.hsgamer.enchantmagicpack.enchants.passive.StunHit;
 import me.hsgamer.enchantmagicpack.enchants.potion.passive.Shining;
-import me.hsgamer.enchantmagicpack.enchants.projectile.ExplosiveArrow;
-import me.hsgamer.enchantmagicpack.enchants.projectile.FrozenArrow;
-import me.hsgamer.enchantmagicpack.enchants.projectile.SpikeArrow;
-import me.hsgamer.enchantmagicpack.enchants.projectile.GravityArrow;
-import me.hsgamer.enchantmagicpack.enchants.projectile.ToxicArrow;
-import me.hsgamer.enchantmagicpack.enchants.projectile.Volley;
+import me.hsgamer.enchantmagicpack.enchants.projectile.*;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class EnchantMagicPack extends JavaPlugin implements EnchantPlugin {
-    private static EnchantMagicPack instace;
+    private static EnchantMagicPack instance;
 
-    public static EnchantMagicPack getInstace() {
-        return instace;
+    public static EnchantMagicPack getInstance() {
+        return instance;
     }
 
     @Override
     public void onEnable() {
-        instace = this;
+        instance = this;
         new Listeners(this);
     }
 
     @Override
     public void onDisable() {
-        instace = null;
         HandlerList.unregisterAll(this);
+        instance = null;
     }
 
     @Override

@@ -19,7 +19,7 @@ import org.bukkit.entity.Player;
 public class FastParticle {
 
     public static final String SERVER_VERSION;
-    private static AbstractParticleSender particleSender = getSender();
+    private static final AbstractParticleSender particleSender = getSender();
 
     static {
         String name = Bukkit.getServer().getClass().getPackage().getName();
