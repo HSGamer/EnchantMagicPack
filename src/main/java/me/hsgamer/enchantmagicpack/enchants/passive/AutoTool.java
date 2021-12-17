@@ -2,8 +2,9 @@ package me.hsgamer.enchantmagicpack.enchants.passive;
 
 import com.sucy.enchant.api.CustomEnchantment;
 import com.sucy.enchant.api.ItemSet;
-import me.hsgamer.enchantmagicpack.utils.ToolsUtils;
 import me.hsgamer.enchantmagicpack.utils.XMaterial;
+import org.bukkit.Material;
+import org.bukkit.Tag;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
@@ -24,7 +25,7 @@ public class AutoTool extends CustomEnchantment {
 
     public void applyInteractBlock(Player user, int level, PlayerInteractEvent event) {
         if (event.getAction() == Action.LEFT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-            XMaterial blocktype = XMaterial.fromString(event.getClickedBlock().getType().toString());
+            Material blocktype = event.getClickedBlock().getType();
             String itemtype = XMaterial.fromString(event.getMaterial().toString()).toString();
             String value;
             if (itemtype.startsWith("DIAMOND_")) {
@@ -39,13 +40,13 @@ public class AutoTool extends CustomEnchantment {
                 value = "WOODEN_";
             } else return;
 
-            if (ToolsUtils.AXES_BLOCKS.contains(blocktype)) {
+            if (Tag.MINEABLE_AXE.isTagged(blocktype)) {
                 event.getItem().setType(XMaterial.valueOf(value + "AXE").parseMaterial());
-            } else if (ToolsUtils.PICKAXES_BLOCKS.contains(blocktype)) {
+            } else if (Tag.MINEABLE_PICKAXE.isTagged(blocktype)) {
                 event.getItem().setType(XMaterial.valueOf(value + "PICKAXE").parseMaterial());
-            } else if (ToolsUtils.SHOVELS_BLOCKS.contains(blocktype)) {
+            } else if (Tag.MINEABLE_SHOVEL.isTagged(blocktype)) {
                 event.getItem().setType(XMaterial.valueOf(value + "SHOVEL").parseMaterial());
-            } else if (ToolsUtils.SWORDS_BLOCKS.contains(blocktype)) {
+            } else {
                 event.getItem().setType(XMaterial.valueOf(value + "SWORD").parseMaterial());
             }
         }
