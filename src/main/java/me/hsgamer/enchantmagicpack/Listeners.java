@@ -13,10 +13,12 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.*;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.projectiles.ProjectileSource;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -30,15 +32,15 @@ public class Listeners implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onShoot(EntityShootBowEvent event) {
         LivingEntity entity = event.getEntity();
-        if (!(entity instanceof Player)) return;
         UUID projectile = event.getProjectile().getUniqueId();
         ItemStack item = event.getBow();
         Map<CustomEnchantment, Integer> enchants = Enchantments.getCustomEnchantments(event.getBow());
         Map<ProjectileHit, Integer> hitEnchants = new HashMap<>();
         enchants.forEach((enchant, level) -> {
-            if (enchant instanceof ProjectileShoot)
-                ((ProjectileShoot) enchant).applyProjectileShoot(entity, item, level, event);
-            else if (enchant instanceof ProjectileHit) hitEnchants.put((ProjectileHit) enchant, level);
+            if (enchant instanceof ProjectileShoot projectileShoot)
+                projectileShoot.applyProjectileShoot(entity, item, level, event);
+            else if (enchant instanceof ProjectileHit projectileHit)
+                hitEnchants.put(projectileHit, level);
         });
         if (!enchants.isEmpty()) HIT_ENCHANTS.put(projectile, hitEnchants);
     }
@@ -46,10 +48,10 @@ public class Listeners implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onHit(ProjectileHitEvent event) {
         ProjectileSource shooter = event.getEntity().getShooter();
-        if (!(shooter instanceof Player)) return;
+        if (!(shooter instanceof LivingEntity livingEntity)) return;
         UUID projectile = event.getEntity().getUniqueId();
         if (HIT_ENCHANTS.containsKey(projectile))
-            HIT_ENCHANTS.remove(projectile).forEach((enchant, level) -> enchant.applyProjectileHit((LivingEntity) shooter, level, event));
+            HIT_ENCHANTS.remove(projectile).forEach((enchant, level) -> enchant.applyProjectileHit(livingEntity, level, event));
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
@@ -57,7 +59,8 @@ public class Listeners implements Listener {
         Player player = event.getEntity();
         Map<CustomEnchantment, Integer> enchants = Enchantments.getEnchantments(player);
         enchants.forEach((enchant, level) -> {
-            if (enchant instanceof DeathEnchantment) ((DeathEnchantment) enchant).applyOnDeath(player, level, event);
+            if (enchant instanceof DeathEnchantment deathEnchantment)
+                deathEnchantment.applyOnDeath(player, level, event);
         });
     }
 
@@ -66,15 +69,27 @@ public class Listeners implements Listener {
         if (!(event.getDamager() instanceof TNTPrimed tnt)) {
             return;
         }
-        if (tnt.hasMetadata(Utils.NOT_DAMAGE_META)) {
+        if (tnt.hasMetadata(Utils.DAMAGE_META) && isAnyFalse(tnt.getMetadata(Utils.DAMAGE_META))) {
             event.setCancelled(true);
         }
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onTntBreak(EntityExplodeEvent event) {
-        if (event.getEntity() instanceof TNTPrimed tnt && tnt.hasMetadata(Utils.NOT_BREAK_META)) {
+        if (!(event.getEntity() instanceof TNTPrimed tnt)) {
+            return;
+        }
+        if (tnt.hasMetadata(Utils.BREAK_META) && isAnyFalse(tnt.getMetadata(Utils.BREAK_META))) {
             event.blockList().clear();
         }
+    }
+
+    private boolean isAnyFalse(List<MetadataValue> list) {
+        for (MetadataValue value : list) {
+            if (!value.asBoolean()) {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -10,8 +10,8 @@ import org.bukkit.metadata.FixedMetadataValue;
 import static me.hsgamer.enchantmagicpack.EnchantMagicPack.getInstance;
 
 public final class Utils {
-    public static final String NOT_DAMAGE_META = "notDamageEntity";
-    public static final String NOT_BREAK_META = "notBreakBlock";
+    public static final String DAMAGE_META = "damageEntity";
+    public static final String BREAK_META = "breakBlock";
 
     private Utils() {
         // EMPTY
@@ -23,12 +23,8 @@ public final class Utils {
             tntPrimed.setSource(source);
             tntPrimed.setYield(radius);
             tntPrimed.setIsIncendiary(fire);
-            if (!damageEntity) {
-                tntPrimed.setMetadata(NOT_DAMAGE_META, new FixedMetadataValue(getInstance(), true));
-            }
-            if (!breakBlock) {
-                tntPrimed.setMetadata(NOT_BREAK_META, new FixedMetadataValue(getInstance(), true));
-            }
+            tntPrimed.setMetadata(DAMAGE_META, new FixedMetadataValue(getInstance(), damageEntity));
+            tntPrimed.setMetadata(BREAK_META, new FixedMetadataValue(getInstance(), breakBlock));
         });
         ExplosionPrimeEvent event = new ExplosionPrimeEvent(tnt);
         Bukkit.getPluginManager().callEvent(event);
