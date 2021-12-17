@@ -41,13 +41,13 @@ public class ToxicArrow extends ProjectileShoot {
 
     public void applyProjectileShoot(LivingEntity user, ItemStack bow, int level, EntityShootBowEvent event) {
         Entity projectile = event.getProjectile();
-        if (!(projectile instanceof Arrow)) return;
+        if (!(projectile instanceof Arrow arrow)) return;
         int duration = (int) settings.get(DURATION, level);
         int amplifier = (int) settings.get(AMPLIFIER, level);
         double range = settings.get(RANGE, level);
         int delay = (int) settings.get(DELAY, level);
         PotionEffect effect = new PotionEffect(PotionEffectType.POISON, duration, amplifier);
-        arrows.put((Arrow) projectile, Tasks.schedule(new ToxicArrowRunnable((Arrow) projectile, user, range, range, range, settings.getInt(PARTICLE_AMOUNT), effect), delay, delay));
+        arrows.put(arrow, Tasks.schedule(new ToxicArrowRunnable(arrow, user, range, range, range, settings.getInt(PARTICLE_AMOUNT), effect), delay, delay));
     }
 
     static class ToxicArrowRunnable extends BukkitRunnable {
