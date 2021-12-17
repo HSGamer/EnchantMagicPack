@@ -2,7 +2,6 @@ package me.hsgamer.enchantmagicpack.enchants.passive;
 
 import com.sucy.enchant.api.CustomEnchantment;
 import com.sucy.enchant.api.ItemSet;
-import me.hsgamer.enchantmagicpack.utils.XMaterial;
 import org.bukkit.Material;
 import org.bukkit.Tag;
 import org.bukkit.entity.LivingEntity;
@@ -26,7 +25,7 @@ public class AutoTool extends CustomEnchantment {
     public void applyInteractBlock(Player user, int level, PlayerInteractEvent event) {
         if (event.getAction() == Action.LEFT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
             Material blocktype = event.getClickedBlock().getType();
-            String itemtype = XMaterial.fromString(event.getMaterial().toString()).toString();
+            String itemtype = event.getMaterial().name();
             String value;
             if (itemtype.startsWith("DIAMOND_")) {
                 value = "DIAMOND_";
@@ -41,13 +40,13 @@ public class AutoTool extends CustomEnchantment {
             } else return;
 
             if (Tag.MINEABLE_AXE.isTagged(blocktype)) {
-                event.getItem().setType(XMaterial.valueOf(value + "AXE").parseMaterial());
+                event.getItem().setType(Material.valueOf(value + "AXE"));
             } else if (Tag.MINEABLE_PICKAXE.isTagged(blocktype)) {
-                event.getItem().setType(XMaterial.valueOf(value + "PICKAXE").parseMaterial());
+                event.getItem().setType(Material.valueOf(value + "PICKAXE"));
             } else if (Tag.MINEABLE_SHOVEL.isTagged(blocktype)) {
-                event.getItem().setType(XMaterial.valueOf(value + "SHOVEL").parseMaterial());
+                event.getItem().setType(Material.valueOf(value + "SHOVEL"));
             } else {
-                event.getItem().setType(XMaterial.valueOf(value + "SWORD").parseMaterial());
+                event.getItem().setType(Material.valueOf(value + "SWORD"));
             }
         }
     }
@@ -55,7 +54,7 @@ public class AutoTool extends CustomEnchantment {
     public void applyOnHit(LivingEntity user, LivingEntity target, int level, EntityDamageByEntityEvent event) {
         if (!(user instanceof Player)) return;
         ItemStack item = ((Player) user).getInventory().getItemInMainHand();
-        String itemtype = XMaterial.fromString(item.getType().toString()).toString();
+        String itemtype = item.getType().name();
         String value;
         if (itemtype.startsWith("DIAMOND_")) {
             value = "DIAMOND_";
@@ -68,6 +67,6 @@ public class AutoTool extends CustomEnchantment {
         } else if (itemtype.startsWith("WOODEN_")) {
             value = "WOODEN_";
         } else return;
-        item.setType(XMaterial.valueOf(value + "SWORD").parseMaterial());
+        item.setType(Material.valueOf(value + "SWORD"));
     }
 }

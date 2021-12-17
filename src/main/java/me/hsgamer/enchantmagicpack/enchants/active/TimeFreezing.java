@@ -4,10 +4,10 @@ import com.sucy.enchant.api.Cooldowns;
 import com.sucy.enchant.api.CustomEnchantment;
 import com.sucy.enchant.api.Tasks;
 import me.hsgamer.enchantmagicpack.EnchantMagicPack;
-import me.hsgamer.enchantmagicpack.utils.Sound;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
+import org.bukkit.Sound;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -54,7 +54,7 @@ public class TimeFreezing extends CustomEnchantment {
                 @Override
                 public void run() {
                     loc.getWorld().spawnParticle(Particle.CRIT_MAGIC, loc, (int) (length * 150), length, length, length, 0.01);
-                    loc.getWorld().playSound(loc, Sound.NOTE_PLING.bukkitSound(), 10, 2);
+                    loc.getWorld().playSound(loc, Sound.BLOCK_NOTE_BLOCK_PLING, 10, 2);
                     for (Entity entity : loc.getWorld().getNearbyEntities(loc, length, length, length)) {
                         if (entity instanceof Projectile
                                 || entity.getType().equals(EntityType.SMALL_FIREBALL) || entity.getType().equals(EntityType.FIREBALL) || entity.getType().equals(EntityType.DRAGON_FIREBALL)) {

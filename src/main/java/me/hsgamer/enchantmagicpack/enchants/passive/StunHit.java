@@ -2,7 +2,7 @@ package me.hsgamer.enchantmagicpack.enchants.passive;
 
 import com.sucy.enchant.api.CustomEnchantment;
 import com.sucy.enchant.api.ItemSet;
-import me.hsgamer.enchantmagicpack.utils.Sound;
+import org.bukkit.Sound;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.potion.PotionEffect;
@@ -26,7 +26,7 @@ public class StunHit extends CustomEnchantment {
 
     public void applyOnHit(LivingEntity user, LivingEntity target, int level, EntityDamageByEntityEvent event) {
         if (Math.random() * 100 <= settings.get(CHANCE, level)) {
-            target.getWorld().playSound(target.getLocation(), Sound.ZOMBIE_WOODBREAK.bukkitSound(), 1, 1);
+            target.getWorld().playSound(target.getLocation(), Sound.ENTITY_ZOMBIE_ATTACK_WOODEN_DOOR, 1, 1);
             target.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 1, 1, true, false), true);
             target.addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, 1, 3 * level, true, false), true);
         }
