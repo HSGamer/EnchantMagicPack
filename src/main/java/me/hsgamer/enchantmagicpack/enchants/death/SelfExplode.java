@@ -1,6 +1,7 @@
 package me.hsgamer.enchantmagicpack.enchants.death;
 
 import com.sucy.enchant.api.Cooldowns;
+import me.hsgamer.enchantmagicpack.Utils;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -28,6 +29,6 @@ public class SelfExplode extends DeathEnchantment {
     @Override
     public void applyOnDeath(Player user, int level, PlayerDeathEvent event) {
         Location loc = user.getLocation();
-        loc.getWorld().createExplosion(loc.getX(), loc.getY(), loc.getZ(), settings.getFloat(DAMAGE, level), settings.getBoolean(BLOCK_FIRE), settings.getBoolean(BLOCK_BREAK));
+        Utils.spawnTnt(loc, user, settings.getFloat(DAMAGE, level), 0, settings.getBoolean(BLOCK_FIRE), settings.getBoolean(BLOCK_BREAK), true);
     }
 }

@@ -16,19 +16,20 @@ public final class EnchantMagicPack extends JavaPlugin implements EnchantPlugin 
     private static EnchantMagicPack instance;
 
     public static EnchantMagicPack getInstance() {
+        if (instance == null) {
+            instance = JavaPlugin.getPlugin(EnchantMagicPack.class);
+        }
         return instance;
     }
 
     @Override
     public void onEnable() {
-        instance = this;
         new Listeners(this);
     }
 
     @Override
     public void onDisable() {
         HandlerList.unregisterAll(this);
-        instance = null;
     }
 
     @Override

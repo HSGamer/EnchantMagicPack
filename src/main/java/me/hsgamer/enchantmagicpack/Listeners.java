@@ -7,12 +7,11 @@ import me.hsgamer.enchantmagicpack.enchants.projectile.ProjectileHit;
 import me.hsgamer.enchantmagicpack.enchants.projectile.ProjectileShoot;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.TNTPrimed;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityShootBowEvent;
-import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.entity.ProjectileHitEvent;
+import org.bukkit.event.entity.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.projectiles.ProjectileSource;
@@ -60,5 +59,22 @@ public class Listeners implements Listener {
         enchants.forEach((enchant, level) -> {
             if (enchant instanceof DeathEnchantment) ((DeathEnchantment) enchant).applyOnDeath(player, level, event);
         });
+    }
+
+    @EventHandler(priority = EventPriority.LOWEST)
+    public void onTntDamage(EntityDamageByEntityEvent event) {
+        if (!(event.getDamager() instanceof TNTPrimed tnt)) {
+            return;
+        }
+        if (tnt.hasMetadata(Utils.NOT_DAMAGE_META)) {
+            event.setCancelled(true);
+        }
+    }
+
+    @EventHandler(priority = EventPriority.LOWEST)
+    public void onTntBreak(EntityExplodeEvent event) {
+        if (event.getEntity() instanceof TNTPrimed tnt && tnt.hasMetadata(Utils.NOT_BREAK_META)) {
+            event.blockList().clear();
+        }
     }
 }

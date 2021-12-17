@@ -2,6 +2,7 @@ package me.hsgamer.enchantmagicpack.enchants.projectile;
 
 import com.sucy.enchant.api.Cooldowns;
 import mc.promcteam.engine.mccore.util.Protection;
+import me.hsgamer.enchantmagicpack.Utils;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -32,7 +33,7 @@ public class ExplosiveArrow extends ProjectileHit {
         if (Cooldowns.onCooldown(this, user, settings, level)) return;
         if (event.getHitEntity() == null) return;
         Location target = event.getHitEntity().getLocation();
-        event.getHitEntity().getWorld().createExplosion(target.getX(), target.getY(), target.getZ(), settings.getFloat(DAMAGE, level), settings.getBoolean(BLOCK_FIRE), settings.getBoolean(BLOCK_BREAK));
+        Utils.spawnTnt(target, user, settings.getInt(DAMAGE, level), 0, settings.getBoolean(BLOCK_FIRE), settings.getBoolean(BLOCK_BREAK), true);
         for (Entity e : target.getWorld().getNearbyEntities(target, settings.getInt(DAMAGE, level), settings.getInt(DAMAGE, level), settings.getInt(DAMAGE, level))) {
             if (e instanceof LivingEntity livingEntity && !Protection.isAlly(user, livingEntity)) {
                 e.setFireTicks(60);
