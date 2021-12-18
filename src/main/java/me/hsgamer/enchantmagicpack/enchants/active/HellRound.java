@@ -20,7 +20,7 @@ public class HellRound extends CustomEnchantment {
     private static final String DAMAGE = "damage";
 
     public HellRound() {
-        super("HellRound", "Deal damage to entities nearby");
+        super("Hell Round", "Deal damage to entities nearby");
 
         setMaxLevel(5);
         setWeight(2);

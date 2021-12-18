@@ -16,7 +16,7 @@ public class StunHit extends CustomEnchantment {
     private static final String CHANCE = "chance";
 
     public StunHit() {
-        super("StunHit", "Chance to stun the enemy");
+        super("Stun Hit", "Chance to stun the enemy");
         setMaxLevel(6);
         setWeight(1);
         addNaturalItems(ItemSet.SWORDS.getItems());

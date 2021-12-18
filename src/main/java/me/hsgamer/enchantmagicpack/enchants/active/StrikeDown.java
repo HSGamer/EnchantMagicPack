@@ -17,7 +17,7 @@ public class StrikeDown extends CustomEnchantment {
     private static final String DAMAGE = "damage";
 
     public StrikeDown() {
-        super("StrikeDown", "Strike lightning on the enemy");
+        super("Strike Down", "Strike lightning on the enemy");
 
         setMaxLevel(5);
         setWeight(2);

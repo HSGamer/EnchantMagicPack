@@ -28,7 +28,7 @@ public class ToxicArrow extends ProjectileShoot {
     private static final Map<Arrow, BukkitTask> arrows = new HashMap<>();
 
     public ToxicArrow() {
-        super("ToxicArrow", "Make nearby entity be poisoned");
+        super("Toxic Arrow", "Make nearby entity be poisoned");
 
         setMaxLevel(3, 3);
 
@@ -39,6 +39,7 @@ public class ToxicArrow extends ProjectileShoot {
         settings.set(PARTICLE_AMOUNT, 50);
     }
 
+    @Override
     public void applyProjectileShoot(LivingEntity user, ItemStack bow, int level, EntityShootBowEvent event) {
         Entity projectile = event.getProjectile();
         if (!(projectile instanceof Arrow arrow)) return;

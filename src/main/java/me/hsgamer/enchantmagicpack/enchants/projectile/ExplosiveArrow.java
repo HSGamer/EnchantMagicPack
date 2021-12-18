@@ -18,7 +18,7 @@ public class ExplosiveArrow extends ProjectileHit {
     private static final String BLOCK_BREAK = "block-break";
 
     public ExplosiveArrow() {
-        super("ExplosiveArrow", "Explode the area when hitting the enemy");
+        super("Explosive Arrow", "Explode the area when hitting the enemy");
 
         setMaxLevel(5);
         setWeight(2);
@@ -29,6 +29,7 @@ public class ExplosiveArrow extends ProjectileHit {
         settings.set(BLOCK_FIRE, true);
     }
 
+    @Override
     public void applyProjectileHit(LivingEntity user, int level, ProjectileHitEvent event) {
         if (Cooldowns.onCooldown(this, user, settings, level)) return;
         if (event.getHitEntity() == null) return;

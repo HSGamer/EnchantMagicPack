@@ -20,7 +20,7 @@ public class HitBehind extends CustomEnchantment {
 
     public HitBehind() {
 
-        super("HitBehind", "Chance to teleport behind the enemy when fighting (Required Sneaking)");
+        super("Hit Behind", "Chance to teleport behind the enemy when fighting (Required Sneaking)");
 
         setMaxLevel(5);
         setWeight(1);

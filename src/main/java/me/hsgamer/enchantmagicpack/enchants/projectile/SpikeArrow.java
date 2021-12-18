@@ -17,7 +17,7 @@ public class SpikeArrow extends ProjectileHit {
     private static final String MAXDAMAGE = "maxdamage";
 
     public SpikeArrow() {
-        super("SpikeArrow", "Split the damage to nearby entities");
+        super("Spike Arrow", "Split the damage to nearby entities");
 
         setMaxLevel(3);
         setWeight(2);
@@ -29,6 +29,7 @@ public class SpikeArrow extends ProjectileHit {
         Cooldowns.configure(settings, 5, 0);
     }
 
+    @Override
     public void applyProjectileHit(LivingEntity user, int level, ProjectileHitEvent event) {
         if (event.getHitEntity() == null) return;
         if (Cooldowns.onCooldown(this, user, settings, level)) return;

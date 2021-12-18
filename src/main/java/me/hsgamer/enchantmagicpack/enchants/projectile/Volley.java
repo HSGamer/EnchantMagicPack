@@ -23,6 +23,7 @@ public class Volley extends ProjectileShoot {
         settings.set(MULTIPLY, 2, 1);
     }
 
+    @Override
     public void applyProjectileShoot(LivingEntity user, ItemStack bow, int level, EntityShootBowEvent event) {
         int amount = (int) (1 + 2 * Math.round(settings.get(MULTIPLY, level)));
         Arrow arrow = (Arrow) event.getProjectile();

@@ -14,7 +14,7 @@ public class FrozenArrow extends ProjectileHit {
     private static final String DURATION = "duration";
 
     public FrozenArrow() {
-        super("FrozenArrow", "Freeze the enemy when hit");
+        super("Frozen Arrow", "Freeze the enemy when hit");
 
         setMaxLevel(5);
         setWeight(2);
@@ -23,6 +23,7 @@ public class FrozenArrow extends ProjectileHit {
         settings.set(DURATION, 3, 1);
     }
 
+    @Override
     public void applyProjectileHit(LivingEntity user, int level, ProjectileHitEvent event) {
         if (Cooldowns.onCooldown(this, user, settings, level)) return;
         if (!(event.getHitEntity() instanceof LivingEntity livingEntity)) return;
