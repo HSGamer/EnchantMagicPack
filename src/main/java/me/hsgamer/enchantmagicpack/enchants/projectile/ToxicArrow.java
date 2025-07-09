@@ -1,7 +1,6 @@
 package me.hsgamer.enchantmagicpack.enchants.projectile;
 
-import com.sucy.enchant.api.Tasks;
-import mc.promcteam.engine.mccore.util.Protection;
+import me.hsgamer.enchantmagicpack.Utils;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Particle;
@@ -15,6 +14,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
+import studio.magemonkey.fabled.enchants.api.Tasks;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -78,7 +78,7 @@ public class ToxicArrow extends ProjectileShoot {
             Location start = arrow.getLocation();
             for (Entity e : arrow.getNearbyEntities(offX, offY, offZ)) {
                 if (!(e instanceof LivingEntity livingEntity)) continue;
-                if (Protection.isAlly(user, livingEntity)) continue;
+                if (Utils.isAlly(user, livingEntity)) continue;
                 Location end = e.getLocation();
                 Location temp = start.clone();
                 double distance = temp.distance(end);

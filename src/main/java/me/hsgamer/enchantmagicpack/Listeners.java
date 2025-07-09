@@ -1,7 +1,5 @@
 package me.hsgamer.enchantmagicpack;
 
-import com.sucy.enchant.api.CustomEnchantment;
-import com.sucy.enchant.api.Enchantments;
 import me.hsgamer.enchantmagicpack.enchants.death.DeathEnchantment;
 import me.hsgamer.enchantmagicpack.enchants.projectile.ProjectileHit;
 import me.hsgamer.enchantmagicpack.enchants.projectile.ProjectileShoot;
@@ -16,6 +14,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.projectiles.ProjectileSource;
+import studio.magemonkey.fabled.enchants.api.CustomEnchantment;
+import studio.magemonkey.fabled.enchants.api.Enchantments;
 
 import java.util.HashMap;
 import java.util.List;

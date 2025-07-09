@@ -1,11 +1,11 @@
 package me.hsgamer.enchantmagicpack.enchants.projectile;
 
-import com.sucy.enchant.api.Cooldowns;
-import mc.promcteam.engine.mccore.util.Protection;
+import me.hsgamer.enchantmagicpack.Utils;
 import org.bukkit.Particle;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.entity.ProjectileHitEvent;
+import studio.magemonkey.fabled.enchants.api.Cooldowns;
 
 /*
  * Split the damage to nearby entities
@@ -36,7 +36,7 @@ public class SpikeArrow extends ProjectileHit {
         double range = settings.get(RANGE, level);
         event.getHitEntity().getWorld().spawnParticle(Particle.CRIT, event.getHitEntity().getLocation(), 500, range, range, range, 0.5);
         for (Entity i : event.getHitEntity().getNearbyEntities(range, range, range)) {
-            if (!(i instanceof LivingEntity livingEntity) || Protection.isAlly(user, livingEntity)) continue;
+            if (!(i instanceof LivingEntity livingEntity) || Utils.isAlly(user, livingEntity)) continue;
             if (Math.random() <= settings.get(CHANCE, level)) {
                 livingEntity.damage((Math.random()) * settings.get(MAXDAMAGE, level), user);
             }

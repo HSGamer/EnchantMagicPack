@@ -1,12 +1,12 @@
 package me.hsgamer.enchantmagicpack.enchants.active;
 
-import com.sucy.enchant.api.Cooldowns;
-import com.sucy.enchant.api.CustomEnchantment;
-import mc.promcteam.engine.mccore.util.Protection;
+import me.hsgamer.enchantmagicpack.Utils;
 import org.bukkit.Material;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
+import studio.magemonkey.fabled.enchants.api.Cooldowns;
+import studio.magemonkey.fabled.enchants.api.CustomEnchantment;
 
 /*
  * Strike lightning on the enemy
@@ -30,7 +30,7 @@ public class StrikeDown extends CustomEnchantment {
 
     @Override
     public void applyInteractEntity(final Player player, final int level, final PlayerInteractEntityEvent event) {
-        if (!(event.getRightClicked() instanceof LivingEntity livingEntity) || Protection.isAlly(player, livingEntity))
+        if (!(event.getRightClicked() instanceof LivingEntity livingEntity) || Utils.isAlly(player, livingEntity))
             return;
         if (Cooldowns.onCooldown(this, player, settings, level)) return;
         event.getRightClicked().getWorld().strikeLightning(event.getRightClicked().getLocation());

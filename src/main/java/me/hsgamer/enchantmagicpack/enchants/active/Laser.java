@@ -1,8 +1,6 @@
 package me.hsgamer.enchantmagicpack.enchants.active;
 
-import com.sucy.enchant.api.Cooldowns;
-import com.sucy.enchant.api.CustomEnchantment;
-import mc.promcteam.engine.mccore.util.Protection;
+import me.hsgamer.enchantmagicpack.Utils;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -15,6 +13,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.util.Vector;
+import studio.magemonkey.fabled.enchants.api.Cooldowns;
+import studio.magemonkey.fabled.enchants.api.CustomEnchantment;
 
 /*
  * Shoot a line and damage the enemy
@@ -55,7 +55,7 @@ public class Laser extends CustomEnchantment {
             loc = loc.add(dir.multiply(1).normalize());
             loc.getWorld().spawnParticle(Particle.REDSTONE, loc, 5, 0, 0, 0, 0, new Particle.DustOptions(Color.RED, 1));
             for (Entity entity : loc.getWorld().getNearbyEntities(loc, .3, .3, .3)) {
-                if ((entity instanceof LivingEntity livingEntity) && (entity.getEntityId() != user.getEntityId()) && !(entity instanceof ArmorStand) && !(Protection.isAlly(user, livingEntity))) {
+                if ((entity instanceof LivingEntity livingEntity) && (entity.getEntityId() != user.getEntityId()) && !(entity instanceof ArmorStand) && !(Utils.isAlly(user, livingEntity))) {
                     livingEntity.damage(settings.get(DAMAGE, level), user);
                 }
             }

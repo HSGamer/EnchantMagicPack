@@ -1,7 +1,5 @@
 package me.hsgamer.enchantmagicpack.enchants.passive;
 
-import com.sucy.enchant.api.CustomEnchantment;
-import com.sucy.enchant.api.ItemSet;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
@@ -10,6 +8,8 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Zombie;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import studio.magemonkey.fabled.enchants.api.CustomEnchantment;
+import studio.magemonkey.fabled.enchants.api.ItemSet;
 
 /**
  * Teleport behind the enemy when fighting

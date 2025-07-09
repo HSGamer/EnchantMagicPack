@@ -1,11 +1,11 @@
 package me.hsgamer.enchantmagicpack.enchants.projectile;
 
-import com.sucy.enchant.api.CustomEnchantment;
 import me.hsgamer.enchantmagicpack.ConflictGroup;
 import org.bukkit.Material;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.inventory.ItemStack;
+import studio.magemonkey.fabled.enchants.api.CustomEnchantment;
 
 public abstract class ProjectileShoot extends CustomEnchantment {
     ProjectileShoot(String name, String description) {

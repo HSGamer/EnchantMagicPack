@@ -1,10 +1,10 @@
 package me.hsgamer.enchantmagicpack.enchants.passive;
 
-import com.sucy.enchant.api.CustomEnchantment;
-import com.sucy.enchant.api.ItemSet;
 import org.bukkit.Sound;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.entity.EntityDamageEvent;
+import studio.magemonkey.fabled.enchants.api.CustomEnchantment;
+import studio.magemonkey.fabled.enchants.api.ItemSet;
 
 /*
  * Chance not to get the damage

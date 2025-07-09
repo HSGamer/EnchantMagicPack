@@ -3,9 +3,11 @@ package me.hsgamer.enchantmagicpack;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.TNTPrimed;
 import org.bukkit.event.entity.ExplosionPrimeEvent;
 import org.bukkit.metadata.FixedMetadataValue;
+import studio.magemonkey.fabled.api.CombatProtection;
 
 import static me.hsgamer.enchantmagicpack.EnchantMagicPack.getInstance;
 
@@ -35,5 +37,12 @@ public final class Utils {
             tnt.setFuseTicks(fuse);
             return true;
         }
+    }
+
+    public static boolean isAlly(LivingEntity user, LivingEntity target) {
+        if (Bukkit.getPluginManager().isPluginEnabled("Fabled")) {
+            return !CombatProtection.canAttack(user, target);
+        }
+        return false;
     }
 }

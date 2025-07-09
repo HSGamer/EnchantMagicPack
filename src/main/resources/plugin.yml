@@ -1,7 +1,8 @@
 name: EnchantMagicPack
 version: ${project.version}
 main: me.hsgamer.enchantmagicpack.EnchantMagicPack
-depend: [ProEnchantmentAPI]
+depend: [FabledEnchants]
+softdepend: [Fabled]
 authors: [HSGamer]
 description: A magic pack for EnchantmentAPI
 api-version: 1.17

@@ -1,7 +1,5 @@
 package me.hsgamer.enchantmagicpack;
 
-import com.sucy.enchant.api.EnchantPlugin;
-import com.sucy.enchant.api.EnchantmentRegistry;
 import me.hsgamer.enchantmagicpack.enchants.active.*;
 import me.hsgamer.enchantmagicpack.enchants.death.SelfExplode;
 import me.hsgamer.enchantmagicpack.enchants.passive.AutoTool;
@@ -11,6 +9,8 @@ import me.hsgamer.enchantmagicpack.enchants.passive.StunHit;
 import me.hsgamer.enchantmagicpack.enchants.projectile.*;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
+import studio.magemonkey.fabled.enchants.api.EnchantPlugin;
+import studio.magemonkey.fabled.enchants.api.EnchantmentRegistry;
 
 public final class EnchantMagicPack extends JavaPlugin implements EnchantPlugin {
     private static EnchantMagicPack instance;

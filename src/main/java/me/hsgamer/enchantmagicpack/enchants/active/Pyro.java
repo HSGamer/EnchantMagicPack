@@ -1,8 +1,5 @@
 package me.hsgamer.enchantmagicpack.enchants.active;
 
-import com.sucy.enchant.api.Cooldowns;
-import com.sucy.enchant.api.CustomEnchantment;
-import com.sucy.enchant.api.Tasks;
 import me.hsgamer.enchantmagicpack.EnchantMagicPack;
 import org.bukkit.Material;
 import org.bukkit.Particle;
@@ -13,6 +10,9 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
+import studio.magemonkey.fabled.enchants.api.Cooldowns;
+import studio.magemonkey.fabled.enchants.api.CustomEnchantment;
+import studio.magemonkey.fabled.enchants.api.Tasks;
 
 import java.util.HashMap;
 import java.util.Map;

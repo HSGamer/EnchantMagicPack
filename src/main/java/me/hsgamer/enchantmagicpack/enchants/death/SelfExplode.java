@@ -1,11 +1,11 @@
 package me.hsgamer.enchantmagicpack.enchants.death;
 
-import com.sucy.enchant.api.Cooldowns;
 import me.hsgamer.enchantmagicpack.Utils;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import studio.magemonkey.fabled.enchants.api.Cooldowns;
 
 public class SelfExplode extends DeathEnchantment {
     private static final String DAMAGE = "damage";

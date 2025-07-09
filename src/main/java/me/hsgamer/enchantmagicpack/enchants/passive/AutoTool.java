@@ -1,7 +1,5 @@
 package me.hsgamer.enchantmagicpack.enchants.passive;
 
-import com.sucy.enchant.api.CustomEnchantment;
-import com.sucy.enchant.api.ItemSet;
 import org.bukkit.Material;
 import org.bukkit.Tag;
 import org.bukkit.block.Block;
@@ -10,6 +8,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import studio.magemonkey.fabled.enchants.api.CustomEnchantment;
+import studio.magemonkey.fabled.enchants.api.ItemSet;
 
 public class AutoTool extends CustomEnchantment {
     public AutoTool() {

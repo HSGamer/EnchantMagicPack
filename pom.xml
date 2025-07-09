@@ -6,7 +6,7 @@
 
     <groupId>me.hsgamer</groupId>
     <artifactId>enchant-magic-pack</artifactId>
-    <version>1.0</version>
+    <version>2.0</version>
     <packaging>jar</packaging>
 
     <name>EnchantMagicPack</name>
@@ -54,18 +54,22 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.sucy.enchant</groupId>
-            <artifactId>ProEnchantmentAPI</artifactId>
-            <version>1.0-ALPHA</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/ProEnchantmentAPI.jar</systemPath>
+            <groupId>studio.magemonkey</groupId>
+            <artifactId>codex</artifactId>
+            <version>1.1.1-R0.4-SNAPSHOT</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>mc.promcteam</groupId>
-            <artifactId>promccore</artifactId>
-            <version>1.0.3.5-ALPHA</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/promccore.jar</systemPath>
+            <groupId>studio.magemonkey</groupId>
+            <artifactId>fabled-enchants</artifactId>
+            <version>1.0.1-R0.4-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>studio.magemonkey</groupId>
+            <artifactId>fabled</artifactId>
+            <version>1.0.4-R0.56-SNAPSHOT</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 </project>

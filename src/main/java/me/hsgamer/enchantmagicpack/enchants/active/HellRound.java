@@ -1,8 +1,6 @@
 package me.hsgamer.enchantmagicpack.enchants.active;
 
-import com.sucy.enchant.api.Cooldowns;
-import com.sucy.enchant.api.CustomEnchantment;
-import mc.promcteam.engine.mccore.util.Protection;
+import me.hsgamer.enchantmagicpack.Utils;
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.entity.Entity;
@@ -10,6 +8,8 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+import studio.magemonkey.fabled.enchants.api.Cooldowns;
+import studio.magemonkey.fabled.enchants.api.CustomEnchantment;
 
 /*
  * Deal damage to entities nearby
@@ -40,7 +40,7 @@ public class HellRound extends CustomEnchantment {
         user.getWorld().spawnParticle(Particle.FLAME, user.getLocation(), (int) (100 * range), range, 2.0, range, 0.05);
         user.getWorld().spawnParticle(Particle.SMOKE_LARGE, user.getLocation(), (int) (50 * range), range, 2.0, range, 0.1);
         for (Entity e : user.getNearbyEntities(range, 2, range)) {
-            if (!(e instanceof LivingEntity livingEntity) || Protection.isAlly(user, livingEntity)) continue;
+            if (!(e instanceof LivingEntity livingEntity) || Utils.isAlly(user, livingEntity)) continue;
             livingEntity.damage(settings.get(DAMAGE, level), user);
         }
         Cooldowns.start(this, user);

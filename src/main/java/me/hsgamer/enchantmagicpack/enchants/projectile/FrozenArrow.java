@@ -1,10 +1,10 @@
 package me.hsgamer.enchantmagicpack.enchants.projectile;
 
-import com.sucy.enchant.api.Cooldowns;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import studio.magemonkey.fabled.enchants.api.Cooldowns;
 
 /*
  * Freeze the enemy when hit
